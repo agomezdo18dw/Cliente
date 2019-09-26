@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .rojo{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .verde{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body onload="cargar()" onresize="cambiarTamaño()">
+
+   <h1>Eventos en javascript</h1>
+   
+   <h3>evento onmouseup</h3>
+   
+   <h3>evento onmousedown</h3>
+   
+   <p onclick="embebido()">Hazme click</p>
+   
+   <button onclick="embebido()">saludo embebido</button> 
+   <div class="rojo" onmouseover="entrar()"></div>
+   
+   <div class="verde" onmouseout="salir()"></div>
+   
+   <p>Introduce tu nombre: <input type="text" onkeyup="tecla()"></p>
+   
+   <p>Introduce tu 1<sup>er</sup> apellido: <input type="text"></p>
+   
+   <p>Selecciona un dia de la semana <select onchange="cambio()">
+        <option value="Lunes">Lunes</option>
+        <option value="Martes">Martes</option>
+        <option value="Miercoles">Miercoles</option>
+        <option value="Jueves">Jueves</option>
+        <option value="Viernes">Viernes</option>
+        <option value="Sabado">Sabado</option>
+        <option value="Domingo">Domingo</option>
+    </select></p> 
+    
+    <script>
+        /*
+        Un evento HTML puede ser algo que hace el navegador, o algo que hace un usuario.
+
+        Aquí hay algunos ejemplos de eventos HTML:
+
+        Una página web HTML ha terminado de cargarse
+        Se cambió un campo de entrada HTML
+        Se hizo clic en un botón HTM
+        
+        EJEMPLOS DE EVENTOS
+        
+        onchange        Un elemento HTML ha sido cambiado
+        onclick         El usuario hace clic en un elemento HTML
+        onmouseover     El usuario mueve el ratón sobre un elemento HTML	
+        onmouseout      El usuario aleja el ratón de un elemento HTML
+        onkeydown       El usuario presiona una tecla del teclado	
+        onload      	El navegador ha terminado de cargar la página
+        */
+        
+        function embebido(){
+            alert("evento click");
+        }
+        
+        function cargar(){
+            alert("evento load");
+        }
+        
+        function cambiarTamaño(){
+            alert("evento resize");
+        }
+        
+        function salir(){
+            alert("evento onmouseout");
+        }
+        
+        function entrar(){
+            alert("evento onmouseover");
+        }
+        
+        function tecla(){
+            alert("evento keyup")
+        }
+        
+        function cambio(){
+            alert("evento change")
+        }
+        
+    </script>
+    
+</body>
+</html>
