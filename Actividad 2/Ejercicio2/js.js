@@ -34,17 +34,8 @@ let tieneSimbolos = (texto) => {
 } 
 
 let calcularEdad = () => {
-    /*let animal = prompt("¿Que mascota tienes?");
-    if (animal != "perro" || animal != "gato")
-        while(animal != "perro" || animal != "gato")
-            animal = prompt("Solo se admite perro o gato");*/
-    
+    let animal = prompt("¿Que mascota tienes?");
     let edad = parseInt(prompt("¿Que edad tiene esa mascota?"));
-    //Condicion que hace comprobacion de si el apellido tiene solo letras
-    if(tieneLetras(edad) || tieneSimbolos(edad))
-        //Bucle que se repitehasta que solo haya letras en el apellido
-        while (tieneLetras(edad) || tieneSimbolos(edad))
-            edad = prompt("Eso no es un numero, ¿Que edad tiene esa mascota?");
     
     if (animal == "perro"){
         let edadP = edad * 7;
