@@ -5,34 +5,6 @@
  *El ejercicio deberá de ejecutar tres veces la función...
  */
 
-//Funcion que comprueba si hay numeros en el texto que le introduzcamos
-let tieneLetras = (texto) => {
-    //Creamos un string con los numeros
-    const letras = "abcdefghijklmnñopqrstuvwxyz";
-    //Pasamos el texto entero a minusculas
-    texto = texto.toLowerCase();
-    //Bucle que comprueba si en el texto hay numeros al leer letra con letra con el estring de antes
-    for(i=0; i < texto.length; i++){
-        if (letras.indexOf(texto.charAt(i),0) != -1){
-            return true;
-        }
-    }
-    return false;
-}
-
-//Funcion que comprueba si hay simbolos en el texto que le introduzcamos
-let tieneSimbolos = (texto) => {
-    //Creamos un string con los simbolos
-    const simbolos = "!=?¿.,/&%$'-_;:<>[]{}";
-    //Bucle que comprueba si en el texto hay simbolos al leer letra con letra con el estring de antes
-    for(i=0; i < texto.length; i++){
-        if (simbolos.indexOf(texto.charAt(i),0) != -1){
-            return true;
-        }
-    }
-    return false;
-} 
-
 let calcularEdad = () => {
     let animal = prompt("¿Que mascota tienes?");
     let edad = parseInt(prompt("¿Que edad tiene esa mascota?"));
