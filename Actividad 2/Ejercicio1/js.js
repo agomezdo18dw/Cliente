@@ -44,25 +44,17 @@ let tieneBlanco = (texto) => {
 
 //Pedimos el nombre
 let nombre = prompt("¿Cual es tu nombre?");
-//Condicion que hace comprobacion de si el nombre tiene solo letras
-if(tieneNumeros(nombre) || tieneSimbolos(nombre) || tieneBlanco(nombre))
-    //Bucle que se repite hasta que solo haya letras en el nombre
-    while (tieneNumeros(nombre) || tieneSimbolos(nombre) || tieneBlanco(nombre))
-        nombre = prompt("Los nombres solo tienen letras, ¿Cual es tu nombre?");
-
+//Bucle que se repite hasta que solo haya letras en el nombre
+while (tieneNumeros(nombre) || tieneSimbolos(nombre) || tieneBlanco(nombre))
+    nombre = prompt("Los nombres solo tienen letras, ¿Cual es tu nombre?");
 //Pedimos el apellido
 let apellido = prompt("¿Cual es tu apellido?");
-//Condicion que hace comprobacion de si el apellido tiene solo letras
-if(tieneNumeros(apellido) || tieneSimbolos(apellido)  || tieneBlanco(apellido))
-    //Bucle que se repitehasta que solo haya letras en el apellido
-    while (tieneNumeros(apellido) || tieneSimbolos(apellido)  || tieneBlanco(apellido))
-        apellido = prompt("Los apellidos solo tienen letras, ¿Cual es tu apellido?");
-
+//Bucle que se repitehasta que solo haya letras en el apellido
+while (tieneNumeros(apellido) || tieneSimbolos(apellido)  || tieneBlanco(apellido))
+    apellido = prompt("Los apellidos solo tienen letras, ¿Cual es tu apellido?");
 //Creamos array con unas ciudades
 const ciudades = ["Donostia", "Madrid", "Barcelona", "Bilbao", "New York", "Los Angeles", "Londres", "Paris", "Amsterdam", "Sevilla"];
-/*Funcion que calculara ciudad y numero de hijos aleatoriamente y luego escribirlos.
- *Ponemos valores por defecto al nombre y apellido por siacaso.
- */
+//Funcion que calculara ciudad y numero de hijos aleatoriamente y luego escribirlos. Ponemos valores por defecto al nombre y apellido por siacaso.
 let Datos = (nombre = "Federico", apellido = "Marques") => {
     let nHijos = parseInt(Math.random() * (10 - 0) + 0);
     let nCiudad = parseInt(Math.random() * (10 - 0) + 0);
