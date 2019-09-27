@@ -4,16 +4,19 @@
  *1 año humano = 7 años de un perro
  *El ejercicio deberá de ejecutar tres veces la función...
  */
-
+//Funcion que calcula la edad de los animales
 let calcularEdad = () => {
+    //Pedimos datos
     let animal = prompt("¿Que mascota tienes?");
     let edad = parseInt(prompt("¿Que edad tiene esa mascota?"));
-    
+    //Si es perro hacemos una cosa y si es gato otra
     if (animal == "perro"){
+        //Operacion que calcula la edad del perro
         let edadP = edad * 7;
         document.write("Tu perro tiene "+edad+" en años humanos, en años de perros tiene "+edadP+" años<br>");
     }
     else {
+        //Switch que te dice cual es la edad del gato segun la human
         switch(edad){
             case 1:
                 document.write("Tu gato tiene "+edad+" en años humanos, en años de gatos tiene 15 años<br>");
@@ -78,6 +81,7 @@ let calcularEdad = () => {
         }
     }
 }
+//Bucle que repite el ejercicio 3 veces
 for(let i = 0; i < 3; i++){
     calcularEdad();
 }
