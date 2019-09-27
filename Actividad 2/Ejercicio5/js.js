@@ -48,14 +48,14 @@ let recogerDatos = () =>{
     let datos = [];
     //Pedimos la palabra por teclado
     let palabra = prompt("Escribe una palabra:\n(Valor por defecto federico)");
-    //Si no se introduce nada se añade un texto por defecto
-    if (palabra == "")
-        palabra = "federico";
     //Comprobamos que la palabra no tiene numeros, simbolos o espacios
     if(tieneNumeros(palabra) || tieneSimbolos(palabra) || tieneBlanco(palabra))
         //Bucle que se repite hasta que solo haya letras en el nombre
         while (tieneNumeros(palabra) || tieneSimbolos(palabra) || tieneBlanco(palabra))
             palabra = prompt("Las palabras solo tienen letras, ¿Que palabra quieres?\n(No puedes escribir ni numeros, ni simbolos, ni dejar espacios en blanco)\n(Valor por defecto federico)");
+    //Si no se introduce nada se añade un texto por defecto
+    if (palabra == "")
+        palabra = "federico";
     //Generamos un numero al azar entree 9999 y 10
     let numero = parseInt(Math.random() * (9999 - 10));
     //Metemos al array los dos datos
@@ -86,6 +86,7 @@ let darVuelta = (palabra, numero) =>{
     inversion.push(palabraInvertida, numeroInvertido);
     return inversion;
 }
+
 //Bucle que repite el programa 3 veces
 for (let i = 0; i < 3; i++){
     //Cogemoos los datos y los introducimos en variables
