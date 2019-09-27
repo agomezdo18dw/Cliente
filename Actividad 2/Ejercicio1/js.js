@@ -7,7 +7,7 @@
 let tieneNumeros = (texto) => {
     //Creamos un string con los numeros
     const numeros = "0123456789";
-    //Bucle que comprueba si en el texto hay numeros al leer letra con letra con el estring de antes
+    //Bucle que comprueba si en el texto hay numeros al leerlo letra por letra y compararlo con el string de antes
     for(i=0; i < texto.length; i++){
         if (numeros.indexOf(texto.charAt(i),0) != -1){
             return true;
@@ -19,8 +19,8 @@ let tieneNumeros = (texto) => {
 //Funcion que comprueba si hay simbolos en el texto que le introduzcamos
 let tieneSimbolos = (texto) => {
     //Creamos un string con los simbolos
-    const numeros = "!=?¿.,/&%$'-_;:<>[]{}";
-    //Bucle que comprueba si en el texto hay simbolos al leer letra con letra con el estring de antes
+    const numeros = "!¡=?¿.,/º&%$'-_;:<>[]{}";
+    //Bucle que comprueba si en el texto hay simbolos al leerlo letra por letra y compararlo con el string de antes
     for(i=0; i < texto.length; i++){
         if (numeros.indexOf(texto.charAt(i),0) != -1){
             return true;
@@ -33,7 +33,7 @@ let tieneSimbolos = (texto) => {
 let tieneBlanco = (texto) => {
     //Creamos un string con el espacio
     const espacio = " ";
-    //Bucle que comprueba si en el texto hay espacios al leer letra con letra con el estring de antes
+    //Bucle que comprueba si en el texto hay espacios al leerlo letra por letra y compararlo con el string de antes
     for(i=0; i < texto.length; i++){
         if (espacio.indexOf(texto.charAt(i),0) != -1){
             return true;
