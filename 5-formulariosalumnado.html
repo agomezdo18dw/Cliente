@@ -89,10 +89,10 @@
         function radios(){
             var vradio = document.querySelectorAll("input[type='radio']");
             for(i=0;i<vradio.length;i++){
-                if(vradio[i].checked==true)
-                    vtexto.innerHTML += "<p>La pregunta seleccionada es "+vradio[i].value+"</p>";
-                else if (vradio[i].checked==true && vradio[i].value=="nsnc")
+                if (vradio[i].checked==true && vradio[i].value=="nsnc")
                     vtexto.innerHTML += "<p>Debes elegir otra opcion</p>";
+                else if(vradio[i].checked==true)
+                    vtexto.innerHTML += "<p>La pregunta seleccionada es "+vradio[i].value+"</p>";
             }
         }
         
