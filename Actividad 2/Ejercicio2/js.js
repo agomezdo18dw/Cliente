@@ -4,53 +4,19 @@
  *1 año humano = 7 años de un perro
  *El ejercicio deberá de ejecutar tres veces la función...
  */
-
-//Funcion que comprueba si hay numeros en el texto que le introduzcamos
-let tieneLetras = (texto) => {
-    //Creamos un string con los numeros
-    const letras = "abcdefghijklmnñopqrstuvwxyz";
-    //Pasamos el texto entero a minusculas
-    texto = texto.toLowerCase();
-    //Bucle que comprueba si en el texto hay numeros al leer letra con letra con el estring de antes
-    for(i=0; i < texto.length; i++){
-        if (letras.indexOf(texto.charAt(i),0) != -1){
-            return true;
-        }
-    }
-    return false;
-}
-
-//Funcion que comprueba si hay simbolos en el texto que le introduzcamos
-let tieneSimbolos = (texto) => {
-    //Creamos un string con los simbolos
-    const simbolos = "!=?¿.,/&%$'-_;:<>[]{}";
-    //Bucle que comprueba si en el texto hay simbolos al leer letra con letra con el estring de antes
-    for(i=0; i < texto.length; i++){
-        if (simbolos.indexOf(texto.charAt(i),0) != -1){
-            return true;
-        }
-    }
-    return false;
-} 
-
+//Funcion que calcula la edad de los animales
 let calcularEdad = () => {
-    /*let animal = prompt("¿Que mascota tienes?");
-    if (animal != "perro" || animal != "gato")
-        while(animal != "perro" || animal != "gato")
-            animal = prompt("Solo se admite perro o gato");*/
-    
+    //Pedimos datos
+    let animal = prompt("¿Que mascota tienes?");
     let edad = parseInt(prompt("¿Que edad tiene esa mascota?"));
-    //Condicion que hace comprobacion de si el apellido tiene solo letras
-    if(tieneLetras(edad) || tieneSimbolos(edad))
-        //Bucle que se repitehasta que solo haya letras en el apellido
-        while (tieneLetras(edad) || tieneSimbolos(edad))
-            edad = prompt("Eso no es un numero, ¿Que edad tiene esa mascota?");
-    
+    //Si es perro hacemos una cosa y si es gato otra
     if (animal == "perro"){
+        //Operacion que calcula la edad del perro
         let edadP = edad * 7;
         document.write("Tu perro tiene "+edad+" en años humanos, en años de perros tiene "+edadP+" años<br>");
     }
     else {
+        //Switch que te dice cual es la edad del gato segun la human
         switch(edad){
             case 1:
                 document.write("Tu gato tiene "+edad+" en años humanos, en años de gatos tiene 15 años<br>");
@@ -115,6 +81,7 @@ let calcularEdad = () => {
         }
     }
 }
+//Bucle que repite el ejercicio 3 veces
 for(let i = 0; i < 3; i++){
     calcularEdad();
 }
