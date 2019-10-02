@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Problema</title>
+<meta charset="utf-8">
+<style>
+	#contenedor{display:flex;width:80%;flex-direction: row;justify-content:space-around;}
+	#informacion  { border: 1px solid black; height:500px;}
+</style>
+
+
+</head>
+<body>
+<div id="contenedor">
+	
+	<form id="formu" method="POST" action="#">
+		<h2>Controles de los formularios</h2>
+		<fieldset>
+			<legend>Trabajar con cajas</legend>
+			<label>Nombre : </label><input id="nombre" name="nombre" type="text" placeholder="Introduce tu nombre"> 
+			<label>Escribe tu clave: </label><input id="clave" name="clave" type="password" /><br>
+			<label>Escribe un comentario:</label><textarea id="comentario" name="comentario" ></textarea><br>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>Trabajar con radios y checkbox</legend>
+			<p>Trabajar con radios</p>
+			<input type="radio" value="si" name="pregunta"><label>SI</label> 
+			<input type="radio" value="no" name="pregunta" checked><label>NO</label>
+			<input type="radio" value="nsnc" name="pregunta"><label>NS/NC</label><br>
+			<p>Trabajar con checkbox</p>
+			<input type="checkbox" value="condiciones" name="condiciones" id="c1"><label>He leido y acepto las condiciones</label><br>
+			<input type="checkbox" value="privacidad" name="privacidad" id="c2"><label> He leido la politica de privacidad</label><br>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>Trabajar con listas simples</legend>
+			<select size="1" name="colores" id="lista">
+				<option value="color_rojo">Rojo</option>
+				<option value="color_amarillo">amarillo</option>
+				<option value="color_verde">Verde</option>
+				<option value="color_azul">Azul</option>
+				<option value="color_blanco">blanco</option>
+				<option value="color_negro">negro</option>
+			</select>
+		</fieldset>
+		<br/><br/>
+		<input type="button" value="text-password-textarea" onClick="cajas()">
+		<input type="button" value="radios" onClick="radios()">
+		<input type="button" value="checkbox" onClick="checkbox()">
+		<input type="button" value="listasimple" onClick="listasimple()">
+	</form>
+	<aside>
+		<h2>Contenidos de los controles</h2>
+		<p  id="informacion">Espacio para tu texto, pulsa en cada boton.</p>
+	</aside>
+
+
+</div>
+
+	<script>
+        
+        var vtexto = document.getElementById("informacion");
+        var vnombre = document.getElementById("nombre");
+        var vpassword = document.getElementById("clave");
+        var vcomentario = document.getElementById("comentario")
+        function cajas(){
+            if (vnombre.value && vpassword.value && vcomentario.value)
+                vtexto.innerHTML = "<br><strong>Mi nombre es</strong> "+vnombre.value+"<br><br>"+"<strong>Mi clave es</strong> "+vpassword.value+"<br><br>"+"Mi comentario es "+vcomentario.value;
+            else
+                vtexto.innerHTML = "Debes rellenar todos los campos para que aparezca la informacion"
+        }
+        
+        function listasimple(){
+            var vlista = document.getElementById("lista");
+            if (vlista.options[vlista.selectedIndex].innerHTML == "negro")
+                vtexto.innerHTML = "";
+            else if (vlista.options[vlista.selectedIndex].innerHTML == "blanco")
+                vtexto.innerHTML = "<p>Debes seleccionar otro valor</p>";
+            else {
+                vtexto.innerHTML += "<p>El value del elemento seleccionado es "+vlista.value+"</p>";
+                //selectedIndex es para que te devuelva la posicion del elemento, siempre empieza desde cero
+                vtexto.innerHTML += "<p>La posicion del elemento seleccionado es "+vlista.selectedIndex+"</p>";
+                vtexto.innerHTML += "<p>El texto del elemento seleccionado es "+vlista.options[vlista.selectedIndex].innerHTML+"</p>";
+            }
+        }
+            
+        //.checked se utiliza con radio y checkbox que son preguntas de elegir. 
+        function radios(){
+            var vradio = document.querySelectorAll("input[type='radio']");
+            for(i=0;i<vradio.length;i++){
+                if(vradio[i].checked==true)
+                    vtexto.innerHTML += "<p>La pregunta seleccionada es "+vradio[i].value+"</p>";
+                else if (vradio[i].checked==true && vradio[i].value=="nsnc")
+                    vtexto.innerHTML += "<p>Debes elegir otra opcion</p>";
+            }
+        }
+        
+        function checkbox(){
+            var vcheckbox = document.querySelectorAll("input[type='checkbox']");
+                for(i=0;i<vcheckbox.length;i++){
+                    if(vcheckbox[i].checked==true)
+                    vtexto.innerHTML += "<p>Los seleccionados son "+vcheckbox[i].value+"</p>";
+            }
+        }
+    </script>	
+</body>
+</html>
