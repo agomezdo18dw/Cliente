@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Datos</title>
+<meta charset="utf-8">
+<style>
+	#contenedor{
+        display:flex;
+        width:80%;
+        flex-direction: row;
+        justify-content:space-around;
+        margin-left: 100px;
+    }
+	aside{
+        border: 1px solid black; 
+        height:500px;
+        width: 400px;
+        margin-left: 100px;
+    }
+</style>
+
+
+</head>
+<body>
+<div id="contenedor">
+    <form id="formu" method="POST" action="#">
+        <h1>Recogida y procesamiento de datos de un formulario</h1>
+        <label>Nombre del cliente: </label><input id="nombre" name="nombre" type="text" placeholder="Introduce tu nombre">
+        <br><br>
+        <label>Material de la caja: </label>
+        <select size="1" name="meterial" id="material">
+            <option value="select">Selecciona un material</option>
+            <option value="Madera">Madera</option>
+            <option value="Poliespan">Poliespan</option>
+            <option value="Plastico">Plastico</option>
+            <option value="Carton">Carton</option>
+            <option value="Terciopelo">Terciopelo</option>
+        </select>
+        <p>Seleccione una dimension para la caja:</p>
+        <input type="radio" value="Diminuta" name="tamaño"><label>Diminuta</label>
+        <br>
+        <input type="radio" value="Mediano" name="tamaño"><label>Mediano</label>
+        <br>
+        <input type="radio" value="Grande" name="tamaño"><label>Grande</label><br>
+        <br>
+        <p>Escribe un comentario:</p>
+        <textarea id="comentario" name="comentario"></textarea>
+        <br><br>
+        <input type="button" value="Ver seleccion" onClick="seleccion()">
+    </form>
+    <aside>
+        <h2>Seleccion</h2>
+        <p id="seleccion">Seleccione algo.</p>
+    </aside>
+    </div>
+    <script>
+        let texto = document.getElementById("seleccion");
+        let nombre = document.getElementById("nombre");
+        let comentario = document.getElementById("comentario");
+        
+        let seleccion = () => {
+            if (tieneNumeros(nombre.value) || tieneSimbolos(nombre.value) || tieneBlanco(nombre.value))
+                texto.innerHTML = "<p>Los nombre no tienen ni letras, ni simbolos y tampoco espacios en blanco, vuelve a introducir tu nombre</p>"
+            else if (vacio(nombre.value))
+                texto.innerHTML = "<p>No se puede dejar el nombre en blanco</p>";
+            else if (valMat())
+                texto.innerHTML = "<p>Debes seleccionar un material</p>";
+            else {
+                texto.innerHTML = "<p><b>Nombre: </b>" + nombre.value + "</p>";
+                texto.innerHTML += "<p><b>El material de la caja: </b>" + material() + "</p>";
+                texto.innerHTML += "<p><b>El tamaño de la caja: </b>" + tamaño() + "</p>";
+            }     
+        }
+        /*-----------------------------VALIDACIONES---------------------------*/
+        //Funcion que comprueba si hay numeros en el texto que le introduzcamos
+        let tieneNumeros = (texto) => {
+            //Creamos un string con los numeros
+            const numeros = "0123456789";
+            //Bucle que comprueba si en el texto hay numeros al leerlo  letra por letra y compararlo con el string de antes
+            for(i=0; i < texto.length; i++){
+                if (numeros.indexOf(texto.charAt(i),0) != -1){
+                    return true;
+                }
+            }
+            return false;
+        }
+        //Funcion que comprueba si hay simbolos en el texto que le introduzcamos
+        let tieneSimbolos = (texto) => {
+            //Creamos un string con los simbolos
+            const numeros = "!¡=?¿.,/º&%$'-_;:<>[]{}";
+            //Bucle que comprueba si en el texto hay simbolos al leerlo letra por letra y compararlo con el string de antes
+            for(i=0; i < texto.length; i++){
+                if (numeros.indexOf(texto.charAt(i),0) != -1){
+                    return true;
+                }
+            }
+            return false;
+        } 
+        //Funcion que comprueba si hay espacios en el texto que le introduzcamos
+        let tieneBlanco = (texto) => {
+            //Creamos un string con el espacio
+            const espacio = " ";
+            //Bucle que comprueba si en el texto hay espacios al leerlo letra por letra y compararlo con el string de antes
+            for(i=0; i < texto.length; i++){
+                if (espacio.indexOf(texto.charAt(i),0) != -1){
+                    return true;
+                }
+            }
+            return false;
+        } 
+        let vacio = (texto) => {
+            if (!texto)
+                return true;
+            
+            else 
+                return false;
+        }
+        
+        let valMat = () => {
+            let material = document.getElementById("material");
+            if (material.selectedIndex == 0)
+                return true;
+            
+            else 
+                return false;
+        }
+    
+        /*-------------------------------FIN--------------------------------*/
+        
+        let material = () => {
+            let material = document.getElementById("material");
+            return material.options[material.selectedIndex].innerHTML;
+        }
+        
+        let tamaño = () => {
+            var radio = document.querySelectorAll("input[type='radio']");
+            for(i=0;i<radio.length;i++){
+                if (radio[i].checked == true)
+                    return radio[i].value;
+            }
+        }
+    </script>	
+</body>
+</html>
