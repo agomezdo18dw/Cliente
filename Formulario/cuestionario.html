@@ -9,29 +9,27 @@
 <div id="contenedor">
     <form id="formu" method="POST" action="#">
         <h1>¿Cual es la mejor descripcion de una variable?</h1>
-        <input type="radio" value="false" name="false"><label>Es metodo para unir cadenas</label>
+        <input type="radio" name="pregunta1" value="mala"><label>Es metodo para unir cadenas</label>
         <br>
-        <input type="radio" value="true" name="true"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa</label>
+        <input type="radio" name="pregunta1" value="buena"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa</label>
         <br>
-        <input type="radio" value="false" name="false"><label>Le permite tomar una decision basada en una condicion</label><br>
+        <input type="radio" name="pregunta1" value="mala"><label>Le permite tomar una decision basada en una condicion</label><br>
         <br>
-    </form>
-    <form id="formu" method="POST" action="#">
+    
         <h1>¿Cual es la mejor descripcion de la concatenacion?</h1>
-        <input type="radio" value="true" name="true"><label>Es metodo para unir cadenas</label>
+        <input type="radio" name="pregunta2" value="buena"><label>Es metodo para unir cadenas</label>
         <br>
-        <input type="radio" value="false" name="false"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa</label>
+        <input type="radio" name="pregunta2" value="mala"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa</label>
         <br>
-        <input type="radio" value="false" name="false"><label>Le permite tomar una decision basada en una condicion</label><br>
+        <input type="radio" name="pregunta2" value="mala"><label>Le permite tomar una decision basada en una condicion</label><br>
         <br>
-    </form>
-    <form id="formu" method="POST" action="#">
+   
         <h1>¿Cual es la mejor descripcion de la instruccion if?</h1>
-        <input type="radio" value="false" name="false"><label>Es metodo para unir cadenas</label>
+        <input type="radio" name="pregunta3" value="mala"><label>Es metodo para unir cadenas</label>
         <br>
-        <input type="radio" value="false" name="false"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa</label>
+        <input type="radio" name="pregunta3" value="mala"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa</label>
         <br>
-        <input type="radio" value="true" name="true"><label>Le permite tomar una decision basada en una condicion</label><br>
+        <input type="radio" name="pregunta3" value="buena"><label>Le permite tomar una decision basada en una condicion</label><br>
         <br>
         <input type="button" value="Calificacion" onClick="Calificacion()">
     </form>
@@ -68,17 +66,17 @@
             let nota = document.querySelectorAll("input[type='radio']");
             let cont = 0;
             for(i=0;i<nota.length;i++){
-                if (nota[i].checked == true && nota[i].value == "true")
+                if (nota[i].checked == true && nota[i].value == "buena")
                     cont++;
             }
             if (cont == 3)
-                return "<p>¡Eres un profesional de JavaScript!</p>"
+                return "¡Eres un profesional de JavaScript!"
             else if (cont == 2)
-                return "<p>Vas por buen camino.</p>"
+                return "Vas por buen camino."
             else if (cont == 1)
-                return "<p>Necesitas estudiar mas tiempo. Inténtalo de nuevo.</p>"
+                return "Necesitas estudiar mas tiempo. Inténtalo de nuevo."
             else
-                return "<p>No creo que hayas estudiado.</p>"
+                return "No creo que hayas estudiado."
         }
         
     </script>	
