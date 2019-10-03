@@ -65,10 +65,16 @@
                 texto.innerHTML = "<p>No se puede dejar el nombre en blanco</p>";
             else if (valMat())
                 texto.innerHTML = "<p>Debes seleccionar un material</p>";
+            else if (valTam())
+                texto.innerHTML = "<p>Debes seleccionar un tamaño</p>";
+            else if (vacio(comentario.value))
+                texto.innerHTML = "<p>Debes escribir algo en el comentario</p>";
             else {
                 texto.innerHTML = "<p><b>Nombre: </b>" + nombre.value + "</p>";
                 texto.innerHTML += "<p><b>El material de la caja: </b>" + material() + "</p>";
                 texto.innerHTML += "<p><b>El tamaño de la caja: </b>" + tamaño() + "</p>";
+                texto.innerHTML += "<p><b>El comentario es: </b>" + comentario.value + "</p>";
+
             }     
         }
         /*-----------------------------VALIDACIONES---------------------------*/
@@ -124,6 +130,18 @@
             else 
                 return false;
         }
+        let valTam = () => {
+            let tamaño = document.querySelectorAll("input[type='radio']");
+            let cont = 1;
+            for(i=0;i<tamaño.length;i++){
+                if (tamaño[i].checked == true)
+                    cont--;
+            }
+            if (cont == 0)
+                return false;
+            else
+                return true;
+        }
     
         /*-------------------------------FIN--------------------------------*/
         
@@ -133,10 +151,10 @@
         }
         
         let tamaño = () => {
-            var radio = document.querySelectorAll("input[type='radio']");
-            for(i=0;i<radio.length;i++){
-                if (radio[i].checked == true)
-                    return radio[i].value;
+            let tamaño = document.querySelectorAll("input[type='radio']");
+            for(i=0;i<tamaño.length;i++){
+                if (tamaño[i].checked == true)
+                    return tamaño[i].value;
             }
         }
     </script>	
