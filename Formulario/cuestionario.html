@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Datos</title>
+<meta charset="utf-8">
+<style></style>
+</head>
+<body>
+<div id="contenedor">
+    <form id="formu" method="POST" action="#">
+        <h1>¿Cual es la mejor descripcion de una variable?</h1>
+        <input type="radio" value="false" name="false"><label>Es metodo para unir cadenas</label>
+        <br>
+        <input type="radio" value="true" name="true"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa</label>
+        <br>
+        <input type="radio" value="false" name="false"><label>Le permite tomar una decision basada en una condicion</label><br>
+        <br>
+    </form>
+    <form id="formu" method="POST" action="#">
+        <h1>¿Cual es la mejor descripcion de la concatenacion?</h1>
+        <input type="radio" value="true" name="true"><label>Es metodo para unir cadenas</label>
+        <br>
+        <input type="radio" value="false" name="false"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa</label>
+        <br>
+        <input type="radio" value="false" name="false"><label>Le permite tomar una decision basada en una condicion</label><br>
+        <br>
+    </form>
+    <form id="formu" method="POST" action="#">
+        <h1>¿Cual es la mejor descripcion de la instruccion if?</h1>
+        <input type="radio" value="false" name="false"><label>Es metodo para unir cadenas</label>
+        <br>
+        <input type="radio" value="false" name="false"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa</label>
+        <br>
+        <input type="radio" value="true" name="true"><label>Le permite tomar una decision basada en una condicion</label><br>
+        <br>
+        <input type="button" value="Calificacion" onClick="Calificacion()">
+    </form>
+    <p>Tu calificacion es: <label id="cali">...</label></p>
+</div>
+    <script>
+        let cali = document.getElementById("cali");
+        
+        let Calificacion = () => {
+            if (valCal())
+                cali.innerHTML = "Debes responder todas las preguntas"
+            else
+                cali.innerHTML = nota();
+
+        }     
+        /*-----------------------------VALIDACIONES---------------------------*/
+        
+        let valCal = () => {
+            let cali = document.querySelectorAll("input[type='radio']");
+            let cont = 3;
+            for(i=0;i<cali.length;i++){
+                if (cali[i].checked == true)
+                    cont--;
+            }
+            if (cont == 0)
+                return false;
+            else
+                return true;
+        }
+    
+        /*-------------------------------FIN--------------------------------*/
+        
+        let nota = () => {
+            let nota = document.querySelectorAll("input[type='radio']");
+            let cont = 0;
+            for(i=0;i<nota.length;i++){
+                if (nota[i].checked == true && nota[i].value == "true")
+                    cont++;
+            }
+            if (cont == 3)
+                return "<p>¡Eres un profesional de JavaScript!</p>"
+            else if (cont == 2)
+                return "<p>Vas por buen camino.</p>"
+            else if (cont == 1)
+                return "<p>Necesitas estudiar mas tiempo. Inténtalo de nuevo.</p>"
+            else
+                return "<p>No creo que hayas estudiado.</p>"
+        }
+        
+    </script>	
+</body>
+</html>
