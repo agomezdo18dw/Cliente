@@ -54,21 +54,28 @@
     </aside>
     </div>
     <script>
+        //Recogemos los valores que ha escrito el usuario
         let texto = document.getElementById("seleccion");
         let nombre = document.getElementById("nombre");
         let comentario = document.getElementById("comentario");
-        
+        //Mostramos la informacion
         let seleccion = () => {
+            //Realizamos las validaciones para el nombre
             if (tieneNumeros(nombre.value) || tieneSimbolos(nombre.value) || tieneBlanco(nombre.value))
                 texto.innerHTML = "<p>Los nombre no tienen ni letras, ni simbolos y tampoco espacios en blanco, vuelve a introducir tu nombre</p>"
+            //Comprobamos que el nombre no esta vacio
             else if (vacio(nombre.value))
                 texto.innerHTML = "<p>No se puede dejar el nombre en blanco</p>";
+            //Realizamos la validacion para el material
             else if (valMat())
                 texto.innerHTML = "<p>Debes seleccionar un material</p>";
+            //Realizamos la validacion para el tamaño
             else if (valTam())
                 texto.innerHTML = "<p>Debes seleccionar un tamaño</p>";
+            //Realizamos la validacion para el comentario
             else if (vacio(comentario.value))
                 texto.innerHTML = "<p>Debes escribir algo en el comentario</p>";
+            //Si todas las validaciones se pasan muestra la informacion
             else {
                 texto.innerHTML = "<p><b>Nombre: </b>" + nombre.value + "</p>";
                 texto.innerHTML += "<p><b>El material de la caja: </b>" + material() + "</p>";
@@ -77,6 +84,7 @@
 
             }     
         }
+        
         /*-----------------------------VALIDACIONES---------------------------*/
         //Funcion que comprueba si hay numeros en el texto que le introduzcamos
         let tieneNumeros = (texto) => {
@@ -114,6 +122,7 @@
             }
             return false;
         } 
+        //Funcion que comprueba si se ha escrito algo o no
         let vacio = (texto) => {
             if (!texto)
                 return true;
@@ -121,7 +130,7 @@
             else 
                 return false;
         }
-        
+        //Funcion que comprueba si se ha seleccionado algun material
         let valMat = () => {
             let material = document.getElementById("material");
             if (material.selectedIndex == 0)
@@ -130,6 +139,7 @@
             else 
                 return false;
         }
+        //Funcion que comprueba si se ha seleccionado algun tamaño
         let valTam = () => {
             let tamaño = document.querySelectorAll("input[type='radio']");
             let cont = 1;
@@ -145,11 +155,12 @@
     
         /*-------------------------------FIN--------------------------------*/
         
+        //Funcion que devuelve la informacion del material seleccionado
         let material = () => {
             let material = document.getElementById("material");
             return material.options[material.selectedIndex].innerHTML;
         }
-        
+        //Funcion que devuelve la informacion del tamaño seleccionado
         let tamaño = () => {
             let tamaño = document.querySelectorAll("input[type='radio']");
             for(i=0;i<tamaño.length;i++){
