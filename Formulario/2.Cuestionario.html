@@ -36,17 +36,20 @@
     <p>Tu calificacion es: <label id="cali">...</label></p>
 </div>
     <script>
+        //Recogemos la zona donde escribir la nota
         let cali = document.getElementById("cali");
-        
+        //Funcion que escribe la nota en caso de que la validacion pase
         let Calificacion = () => {
+            //Realizamos la validacion
             if (valCal())
                 cali.innerHTML = "Debes responder todas las preguntas"
             else
                 cali.innerHTML = nota();
-
-        }     
+        }   
+        
         /*-----------------------------VALIDACIONES---------------------------*/
         
+        //Funcion que comprueba si se ha seleccionado una respuesta por pregunta como minimo
         let valCal = () => {
             let cali = document.querySelectorAll("input[type='radio']");
             let cont = 3;
@@ -62,6 +65,7 @@
     
         /*-------------------------------FIN--------------------------------*/
         
+        //Funcion que devuelve la nota en funcion de los aciertos
         let nota = () => {
             let nota = document.querySelectorAll("input[type='radio']");
             let cont = 0;
