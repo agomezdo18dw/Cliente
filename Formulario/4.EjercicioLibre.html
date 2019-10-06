@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Datos</title>
+<meta charset="utf-8">
+<style>
+    input {
+        width: 150px;
+    }
+    .radio {
+        margin-left: -65px;
+        margin-top: 7px;
+    }
+    .radioLabel {
+        margin-left: -50px;
+    }
+</style>
+</head>
+<body>
+<div id="contenedor">
+    <form id="formu" method="POST" action="#">
+        <h1>Introducir datos bancarios para finalizar la compra</h1>
+        <fieldset>
+			<legend>Informacion del cliente</legend>
+            <label><b>Nombre:</b> </label><input id="nombre" name="nombre" type="text" placeholder="Introduce tu nombre">
+            <br><br>
+            <label><b>Apellidos:</b> </label><input id="apellidos" name="apellidos" type="text" placeholder="Introduce tus apellidos">
+            <br><br>
+            <label><b>Domicilio:</b> </label><input id="domicilio" name="domicilio" type="text" placeholder="Introduce tu domicilio">
+        </fieldset>
+        <br>
+        <fieldset>
+			<legend>Informacion de pago</legend>
+            <label><b>Metodo de pago: </b></label>
+            <select size="1" name="metodo" id="metodo" onchange="mostrarMetodo()">
+                <option value="select">Selecciona un metodo de pago</option>
+                <option value="tarjeta">Tarjeta</option>
+                <option value="paypal">PayPal</option>
+                <option value="paysafecard">Paysafecard</option>
+            </select>
+            <div id="metodoPago"></div>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Tipo de envio</legend>
+            <input type="radio" value="estandar" name="envio" class="radio"><label class="radioLabel">Estandar (Entre 2 y 4 dias)</label>
+            <br>
+            <input type="radio" value="urgente" name="envio" class="radio"><label class="radioLabel">Urgente (Maximo 24 horas)</label>
+            <br>
+            <input type="radio" value="inter" name="envio" class="radio"><label class="radioLabel">Internacional (7 dias mas o menos)</label><br>
+        </fieldset>
+        <br>
+        <input type="button" value="Confirmar compra" onClick="compra()">
+    </form>
+    <aside>
+        <br>
+        <div id="seleccion"></div>
+    </aside>
+    </div>
+    <script>
+        //Recogemos los valores que ha escrito el usuario
+        let texto = document.getElementById("seleccion");
+        let nombre = document.getElementById("nombre");
+        let apellidos = document.getElementById("apellidos");
+        let domicilio = document.getElementById("domicilio");
+        let seleccion = document.getElementById("seleccion");
+        //Mostramos la informacion
+        let compra = () => {
+            //Realizamos las validaciones para el nombre
+            if (tieneNumeros(nombre.value) || tieneSimbolos(nombre.value) || tieneBlanco(nombre.value))
+                seleccion.innerHTML = "<p>Los nombre no tienen ni numeros, ni simbolos y tampoco espacios en blanco, vuelve a introducir tu nombre</p>"
+            //Comprobamos que el nombre no esta vacio
+            else if (vacio(nombre.value))
+                seleccion.innerHTML = "<p>No se puede dejar el nombre en blanco</p>";
+            else if (tieneNumeros(apellidos.value) || tieneSimbolos(apellidos.value))
+                seleccion.innerHTML = "<p>Los apellidos no tienen ni numeros ni simbolos</p>";
+            else if (vacio(apellidos.value))
+                seleccion.innerHTML = "<p>No se pueden dejar los apellidos en blanco</p>";
+            else if (!tieneBlanco(apellidos.value))
+                seleccion.innerHTML = "<p>Debes escribir dos apellidos</p>";
+            else if (vacio(domicilio.value))
+                seleccion.innerHTML = "<p>No se puede dejar el domicilio en blanco</p>";
+            else if (!tieneNumeros(domicilio.value) && !tieneBlanco(domicilio.value)) 
+                seleccion.innerHTML = "<p>Debes poner el portal y la puerta de tu domicilio</p>";
+            //Realizamos la validacion para el material
+            else if (valPago())
+                seleccion.innerHTML = "<p>Debes seleccionar un metodo de pago</p>";
+            
+            //Realizamos la validacion para el tamaño
+            else if (valEnvio())
+                seleccion.innerHTML = "<p>Debes seleccionar un tipo de envio</p>";
+            else {
+                seleccion.innerHTML = "<h1>Confirmacion pedido</h1>";
+                seleccion.innerHTML += "<label><b>Nombre y apellidos</b>" + nombre.value + apellidos.value + "</label>";
+                seleccion.innerHTML += "";
+                seleccion.innerHTML += "<p><b>El tamaño de la caja: </b>" + tamaño() + "</p>";
+                seleccion.innerHTML += "<p><b>El comentario es: </b>" + comentario.value + "</p>";
+
+            }     
+        }
+        
+        /*-----------------------------VALIDACIONES---------------------------*/
+        //Funcion que comprueba si hay numeros en el texto que le introduzcamos
+        let tieneNumeros = (texto) => {
+            //Creamos un string con los numeros
+            const numeros = "0123456789";
+            //Bucle que comprueba si en el texto hay numeros al leerlo  letra por letra y compararlo con el string de antes
+            for(i=0; i < texto.length; i++){
+                if (numeros.indexOf(texto.charAt(i),0) != -1){
+                    return true;
+                }
+            }
+            return false;
+        }
+        //Funcion que comprueba si hay simbolos en el texto que le introduzcamos
+        let tieneSimbolos = (texto) => {
+            //Creamos un string con los simbolos
+            const numeros = "!¡=?¿.,/º&%$'-_;:<>[]{}";
+            //Bucle que comprueba si en el texto hay simbolos al leerlo letra por letra y compararlo con el string de antes
+            for(i=0; i < texto.length; i++){
+                if (numeros.indexOf(texto.charAt(i),0) != -1){
+                    return true;
+                }
+            }
+            return false;
+        } 
+        //Funcion que comprueba si hay espacios en el texto que le introduzcamos
+        let tieneBlanco = (texto) => {
+            //Creamos un string con el espacio
+            const espacio = " ";
+            //Bucle que comprueba si en el texto hay espacios al leerlo letra por letra y compararlo con el string de antes
+            for(i=0; i < texto.length; i++){
+                if (espacio.indexOf(texto.charAt(i),0) != -1){
+                    return true;
+                }
+            }
+            return false;
+        } 
+        //Funcion que comprueba si se ha escrito algo o no
+        let vacio = (texto) => {
+            if (!texto)
+                return true;
+            
+            else 
+                return false;
+        }
+        //Funcion que comprueba si se ha seleccionado algun material
+        let valPago = () => {
+            let metPago = document.getElementById("metodo");
+            if (metPago.selectedIndex == 0)
+                return true;
+            
+            else 
+                return false;
+        }
+        //Funcion que comprueba si se ha seleccionado algun tamaño
+        let valEnvio = () => {
+            let envio = document.querySelectorAll("input[type='radio']");
+            let cont = 1;
+            for(i=0;i<envio.length;i++){
+                if (envio[i].checked == true)
+                    cont--;
+            }
+            if (cont == 0)
+                return false;
+            else
+                return true;
+        }
+    
+        /*-------------------------------FIN--------------------------------*/
+        
+        //Funcion que devuelve la informacion del material seleccionado
+        let material = () => {
+            let material = document.getElementById("material");
+            return material.options[material.selectedIndex].innerHTML;
+        }
+        //Funcion que devuelve la informacion del tamaño seleccionado
+        let tamaño = () => {
+            let tamaño = document.querySelectorAll("input[type='radio']");
+            for(i=0;i<tamaño.length;i++){
+                if (tamaño[i].checked == true)
+                    return tamaño[i].value;
+            }
+        }
+        let mostrarMetodo = () => {
+            let metodoPago = document.getElementById("metodoPago");
+            let metodo = document.getElementById("metodo");
+            if (metodo.options[metodo.selectedIndex].value == "select") {
+                metodoPago.innerHTML = "<br>";
+                metodoPago.innerHTML = "<p>Debes seleccionar un metodo de pago</p>";
+            }
+            if (metodo.options[metodo.selectedIndex].value == "tarjeta") {
+                metodoPago.innerHTML = "<br>";
+                metodoPago.innerHTML += "<label><b>Tipo de tarjeta:</b> </label><select size='1' name='tipo' id='tipo'><option value='select'>Selecciona tipo de tarjeta</option><option value='visa'>VISA</option><option value='mastercard'>MasterCard</option><option value='amexpress'>AmericanExpress</option></select>"
+                metodoPago.innerHTML += "<br><br>";
+                metodoPago.innerHTML += "<label><b>Numero de tarjeta: </b></label><input id='numT' name='numT' type='number' placeholder='Numero de tarjeta'>";
+                metodoPago.innerHTML += "<br><br>";
+                metodoPago.innerHTML += "<label><b>Fecha de caducidad: </b></label><input id='fechaCad' name='dechaCad' type='number' placeholder='Introduce fecha de caducidad'>";
+                metodoPago.innerHTML += "<br><br>";
+                metodoPago.innerHTML += "<label><b>Domicilio: </b></label><input id='codseg' name='codseg' type='number' placeholder='Introduce el codigo de seguridad'>";
+            }
+            else if (metodo.options[metodo.selectedIndex].value == "paypal") {
+                metodoPago.innerHTML = "<br>";
+                metodoPago.innerHTML += "<label><b>Usuario de PayPal: </b></label><input id='usuario' name='usuario' type='text' placeholder='Usuario de PayPal'>";
+                metodoPago.innerHTML += "<br><br>";
+                metodoPago.innerHTML += "<label><b>Contraseña: </b></label><input id='contra' name='contra' type='password' placeholder='Introduce la contraseña'>";
+            }
+            else if (metodo.options[metodo.selectedIndex].value == "paysafecard") {
+                metodoPago.innerHTML = "<br>";
+                metodoPago.innerHTML += "<label><b>Usuario de Paysafecard: </b></label><input id='usuario' name='usuario' type='text' placeholder='Usuario de Paysafecard'>";
+                metodoPago.innerHTML += "<br><br>";
+                metodoPago.innerHTML += "<label><b>Contraseña: </b></label><input id='contra' name='contra' type='password' placeholder='Introduce la contraseña'>";
+            }
+        }
+    </script>	
+</body>
+</html>
