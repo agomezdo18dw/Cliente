@@ -43,11 +43,11 @@
         <br>
         <fieldset>
             <legend>Tipo de envio</legend>
-            <input type="radio" value="estandar" name="envio" class="radio"><label class="radioLabel">Estandar (Entre 2 y 4 dias)</label>
+            <input type="radio" value="estandar" name="envio" class="radio"><label class="radioLabel">Estandar <i>(Entre 2 y 4 dias)</i></label>
             <br>
-            <input type="radio" value="urgente" name="envio" class="radio"><label class="radioLabel">Urgente (Maximo 24 horas)</label>
+            <input type="radio" value="urgente" name="envio" class="radio"><label class="radioLabel">Urgente <i>(Maximo 24 horas)</i></label>
             <br>
-            <input type="radio" value="inter" name="envio" class="radio"><label class="radioLabel">Internacional (7 dias mas o menos)</label><br>
+            <input type="radio" value="internacional" name="envio" class="radio"><label class="radioLabel">Internacional <i>(7 dias mas o menos)</i></label><br>
         </fieldset>
         <br>
         <input type="button" value="Confirmar compra" onClick="compra()">
@@ -66,10 +66,9 @@
         let seleccion = document.getElementById("seleccion");
         //Mostramos la informacion
         let compra = () => {
-            //Realizamos las validaciones para el nombre
+            //Realizamos las validaciones
             if (tieneNumeros(nombre.value) || tieneSimbolos(nombre.value) || tieneBlanco(nombre.value))
                 seleccion.innerHTML = "<p>Los nombre no tienen ni numeros, ni simbolos y tampoco espacios en blanco, vuelve a introducir tu nombre</p>"
-            //Comprobamos que el nombre no esta vacio
             else if (vacio(nombre.value))
                 seleccion.innerHTML = "<p>No se puede dejar el nombre en blanco</p>";
             else if (tieneNumeros(apellidos.value) || tieneSimbolos(apellidos.value))
@@ -82,20 +81,21 @@
                 seleccion.innerHTML = "<p>No se puede dejar el domicilio en blanco</p>";
             else if (!tieneNumeros(domicilio.value) && !tieneBlanco(domicilio.value)) 
                 seleccion.innerHTML = "<p>Debes poner el portal y la puerta de tu domicilio</p>";
-            //Realizamos la validacion para el material
             else if (valPago())
                 seleccion.innerHTML = "<p>Debes seleccionar un metodo de pago</p>";
-            
-            //Realizamos la validacion para el tamaño
             else if (valEnvio())
                 seleccion.innerHTML = "<p>Debes seleccionar un tipo de envio</p>";
+            else if (valNumTar())
+                seleccion.innerHTML = "<p>El numero de tarjeta tiene 24 digitos(Sin separaciones)</p>";
+            else if (valFecha())
+                seleccion.innerHTML = "<p>El numero de tarjeta tiene 24 digitos(Sin separaciones)</p>";
+            else if (valCod())
+                seleccion.innerHTML = "<p>El codigo de seguridad son 3 digitos</p>";
             else {
                 seleccion.innerHTML = "<h1>Confirmacion pedido</h1>";
-                seleccion.innerHTML += "<label><b>Nombre y apellidos</b>" + nombre.value + apellidos.value + "</label>";
-                seleccion.innerHTML += "";
-                seleccion.innerHTML += "<p><b>El tamaño de la caja: </b>" + tamaño() + "</p>";
-                seleccion.innerHTML += "<p><b>El comentario es: </b>" + comentario.value + "</p>";
-
+                seleccion.innerHTML += "<label>Nombre y apellidos del pedido son <i>" + nombre.value + apellidos.value + "</i></label><br>";
+                seleccion.innerHTML += "<label>El metodo de pago es <i>" + metodoPago() + "</i>" + inforMetodo() + "</label><br>";
+                seleccion.innerHTML += "<label>El tipo de envio es <i>" + tipoEnvio() + "</i> por lo que tardara en llegar " + diasEnvio() + "</label>";
             }     
         }
         
@@ -144,16 +144,15 @@
             else 
                 return false;
         }
-        //Funcion que comprueba si se ha seleccionado algun material
+        //Funcion que comprueba si se ha seleccionado algun metodo de pago
         let valPago = () => {
             let metPago = document.getElementById("metodo");
             if (metPago.selectedIndex == 0)
                 return true;
-            
             else 
                 return false;
         }
-        //Funcion que comprueba si se ha seleccionado algun tamaño
+        //Funcion que comprueba si se ha seleccionado algun tipo de envio
         let valEnvio = () => {
             let envio = document.querySelectorAll("input[type='radio']");
             let cont = 1;
@@ -166,45 +165,104 @@
             else
                 return true;
         }
+        //Funcion que comprueba si el numero de tarjeta tiene 24 numeros
+        let valNumTar = () => {
+            let numTar = document.getElementById("numT").value;
+            if (numTar.length < 24)
+                return true;
+            else 
+                return false;
+        }
+        //Funcion que comprueba si la fecha de caducidad tiene 5 caracteres
+        let valFecha = () => {
+            let fecha = document.getElementById("fechaCad").value;
+            if (fecha.length != 5)
+                return true;
+            else 
+                return false;
+        }
+        //Funcion que comprueba si el codigo de seguridad tiene 3 digitos
+        let valCod = () => {
+            let codigo = document.getElementById("codseg").value;
+            if (codigo.length != 3)
+                return true;
+            else 
+                return false;
+        }
     
         /*-------------------------------FIN--------------------------------*/
         
-        //Funcion que devuelve la informacion del material seleccionado
-        let material = () => {
-            let material = document.getElementById("material");
-            return material.options[material.selectedIndex].innerHTML;
+        //Funcion que devuelve la informacion del metodo de pago seleccionado
+        let metodoPago = () => {
+            let metodo = document.getElementById("metodo");
+            return metodo.options[metodo.selectedIndex].innerHTML;
         }
-        //Funcion que devuelve la informacion del tamaño seleccionado
-        let tamaño = () => {
-            let tamaño = document.querySelectorAll("input[type='radio']");
-            for(i=0;i<tamaño.length;i++){
-                if (tamaño[i].checked == true)
-                    return tamaño[i].value;
+        //Fucion que muestra la informacion del metodo de pago seleccionado
+        let inforMetodo = () => {
+            if (metodoPago() == "Tarjeta"){
+                let tipoTarjeta = tipoTarjetaM();
+                let numTar = document.getElementById("numT").value;
+                return ", el tipo de tarjeta <i>" + tipoTarjeta + "</i> con el numero <i>" + numTar + "</i>";
+            }
+            else if (metodoPago() == "PayPal"){
+                let usuario = document.getElementById("usuario").value;
+                return "con el usuario de <i>" + usuario + "</i>";
+            }
+            else {
+                let usuario = document.getElementById("usuario").value;
+                return "con el usuario de <i>" + usuario + "</i>";
             }
         }
+        //Funcion que muestra el tipo de tarjeta seleccionada
+        let tipoTarjetaM = () => {
+            let tipo = document.getElementById("tipo");
+            return tipo.options[tipo.selectedIndex].innerHTML;
+        }
+        //Funcion que devuelve la informacion del tipo de envio seleccionado
+        let tipoEnvio = () => {
+            let envio = document.querySelectorAll("input[type='radio']");
+            for(i=0;i<envio.length;i++){
+                if (envio[i].checked == true)
+                    return envio[i].value;
+            }
+        }
+        //Funcion que devuelve el tiempo que tardara en mandarse el paquete segun el tipo de envio seleccionado
+        let diasEnvio = () => {
+            if (tipoEnvio() == "estandar")
+                return "entre 2 y 4 dias";
+            else if (tipoEnvio() == "urgente")
+                return "24 horas como maximo";
+            else
+                return "aproximadamente 7 dias"
+        }
+        //Funcio que muestra para rellenar la informacion del metodo de pago segun se selecciona
         let mostrarMetodo = () => {
             let metodoPago = document.getElementById("metodoPago");
             let metodo = document.getElementById("metodo");
+            //Si no se selecciona nada
             if (metodo.options[metodo.selectedIndex].value == "select") {
                 metodoPago.innerHTML = "<br>";
                 metodoPago.innerHTML = "<p>Debes seleccionar un metodo de pago</p>";
             }
+            //Si se selecciona tarjeta
             if (metodo.options[metodo.selectedIndex].value == "tarjeta") {
                 metodoPago.innerHTML = "<br>";
                 metodoPago.innerHTML += "<label><b>Tipo de tarjeta:</b> </label><select size='1' name='tipo' id='tipo'><option value='select'>Selecciona tipo de tarjeta</option><option value='visa'>VISA</option><option value='mastercard'>MasterCard</option><option value='amexpress'>AmericanExpress</option></select>"
                 metodoPago.innerHTML += "<br><br>";
                 metodoPago.innerHTML += "<label><b>Numero de tarjeta: </b></label><input id='numT' name='numT' type='number' placeholder='Numero de tarjeta'>";
                 metodoPago.innerHTML += "<br><br>";
-                metodoPago.innerHTML += "<label><b>Fecha de caducidad: </b></label><input id='fechaCad' name='dechaCad' type='number' placeholder='Introduce fecha de caducidad'>";
+                metodoPago.innerHTML += "<label><b>Fecha de caducidad: </b></label><input id='fechaCad' name='fechaCad' type='text' placeholder='Introduce fecha de caducidad'>";
                 metodoPago.innerHTML += "<br><br>";
-                metodoPago.innerHTML += "<label><b>Domicilio: </b></label><input id='codseg' name='codseg' type='number' placeholder='Introduce el codigo de seguridad'>";
+                metodoPago.innerHTML += "<label><b>Codigo de seguridad: </b></label><input id='codseg' name='codseg' type='number' placeholder='Introduce el codigo de seguridad'>";
             }
+            //Si se selecciona paypal
             else if (metodo.options[metodo.selectedIndex].value == "paypal") {
                 metodoPago.innerHTML = "<br>";
                 metodoPago.innerHTML += "<label><b>Usuario de PayPal: </b></label><input id='usuario' name='usuario' type='text' placeholder='Usuario de PayPal'>";
                 metodoPago.innerHTML += "<br><br>";
                 metodoPago.innerHTML += "<label><b>Contraseña: </b></label><input id='contra' name='contra' type='password' placeholder='Introduce la contraseña'>";
             }
+            //Si se selecciona paysafecard
             else if (metodo.options[metodo.selectedIndex].value == "paysafecard") {
                 metodoPago.innerHTML = "<br>";
                 metodoPago.innerHTML += "<label><b>Usuario de Paysafecard: </b></label><input id='usuario' name='usuario' type='text' placeholder='Usuario de Paysafecard'>";
