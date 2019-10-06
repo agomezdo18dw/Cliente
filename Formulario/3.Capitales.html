@@ -78,19 +78,19 @@
                     cont++;
             }
             if (cont == 3) {
-                cali += "<p>Aciertos 3</p>"
+                cali = "<p>Aciertos 3</p>"
                 cali += "<p>Gran trabajo</p>"
                 cali += "<img src='img/win.gif'>"
                 return cali;
             }
             else if (cont == 2 || cont == 1) {
-                cali += "<p>Aciertos 1 o 2</p>"
+                cali = "<p>Aciertos 1 o 2</p>"
                 cali += "<p>Eso esta bien</p>"
                 cali += "<img src='img/meh.jpg'>"
                 return cali;   
             }
             else {
-                cali += "<p>Aciertos 0</p>"
+                cali = "<p>Aciertos 0</p>"
                 cali += "<p>Realmente necesitas hacerlo mejor</p>"
                 cali += "<img src='img/lose.gif'>"
                 return cali;   
