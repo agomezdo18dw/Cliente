@@ -85,18 +85,29 @@
                 seleccion.innerHTML = "<p>Debes seleccionar un metodo de pago</p>";
             else if (valEnvio())
                 seleccion.innerHTML = "<p>Debes seleccionar un tipo de envio</p>";
-            else if (valNumTar())
-                seleccion.innerHTML = "<p>El numero de tarjeta tiene 24 digitos(Sin separaciones)</p>";
-            else if (valFecha())
-                seleccion.innerHTML = "<p>El numero de tarjeta tiene 24 digitos(Sin separaciones)</p>";
-            else if (valCod())
-                seleccion.innerHTML = "<p>El codigo de seguridad son 3 digitos</p>";
-            else {
+            else if (metodoPago() == "tarjeta") {
+                let fecha = document.getElementById("fechaCad");
+                if (valNumTar())
+                    seleccion.innerHTML = "<p>El numero de tarjeta tiene 16 digitos(Sin separaciones)</p>";
+                else if (valFecha() || !tieneSimbolos(fecha.value))
+                    seleccion.innerHTML = "<p>La fecha tiene que tener un formato: mm/aa</p>";
+                else if (valCod())
+                    seleccion.innerHTML = "<p>El codigo de seguridad son 3 digitos</p>";
+                else {
+                    seleccion.innerHTML = "<h1>Confirmacion pedido</h1>";
+                    seleccion.innerHTML += "<label>Nombre y apellidos del pedido son <i>" + nombre.value + " " + apellidos.value + "</i>  </label><br>";
+                    seleccion.innerHTML += "<label>El metodo de pago es <i>" + metodoPago() + "</i>" + inforMetodo() + "</label><br>";
+                    seleccion.innerHTML += "<label>El tipo de envio es <i>" + tipoEnvio() + "</i> por lo que tardara en llegar " + diasEnvio() + "</label>";
+                }
+            }
+            else if (metodoPago() == "paypal" || metodoPago() == "paysafecard") {
                 seleccion.innerHTML = "<h1>Confirmacion pedido</h1>";
                 seleccion.innerHTML += "<label>Nombre y apellidos del pedido son <i>" + nombre.value + apellidos.value + "</i></label><br>";
                 seleccion.innerHTML += "<label>El metodo de pago es <i>" + metodoPago() + "</i>" + inforMetodo() + "</label><br>";
                 seleccion.innerHTML += "<label>El tipo de envio es <i>" + tipoEnvio() + "</i> por lo que tardara en llegar " + diasEnvio() + "</label>";
-            }     
+            }
+            else
+                seleccion.innerHTML = "<label>Se produjo un error inesperado</label>";
         }
         
         /*-----------------------------VALIDACIONES---------------------------*/
@@ -168,7 +179,7 @@
         //Funcion que comprueba si el numero de tarjeta tiene 24 numeros
         let valNumTar = () => {
             let numTar = document.getElementById("numT").value;
-            if (numTar.length < 24)
+            if (numTar.length < 16)
                 return true;
             else 
                 return false;
@@ -195,22 +206,23 @@
         //Funcion que devuelve la informacion del metodo de pago seleccionado
         let metodoPago = () => {
             let metodo = document.getElementById("metodo");
-            return metodo.options[metodo.selectedIndex].innerHTML;
+            return metodo.options[metodo.selectedIndex].value;
         }
         //Fucion que muestra la informacion del metodo de pago seleccionado
         let inforMetodo = () => {
-            if (metodoPago() == "Tarjeta"){
+            let metodo = metodoPago();
+            if (metodo == "tarjeta"){
                 let tipoTarjeta = tipoTarjetaM();
                 let numTar = document.getElementById("numT").value;
                 return ", el tipo de tarjeta <i>" + tipoTarjeta + "</i> con el numero <i>" + numTar + "</i>";
             }
-            else if (metodoPago() == "PayPal"){
+            else if (metodo == "paypal"){
                 let usuario = document.getElementById("usuario").value;
-                return "con el usuario de <i>" + usuario + "</i>";
+                return " con el usuario de <i>" + usuario + "</i>";
             }
             else {
                 let usuario = document.getElementById("usuario").value;
-                return "con el usuario de <i>" + usuario + "</i>";
+                return " con el usuario de <i>" + usuario + "</i>";
             }
         }
         //Funcion que muestra el tipo de tarjeta seleccionada
@@ -249,11 +261,11 @@
                 metodoPago.innerHTML = "<br>";
                 metodoPago.innerHTML += "<label><b>Tipo de tarjeta:</b> </label><select size='1' name='tipo' id='tipo'><option value='select'>Selecciona tipo de tarjeta</option><option value='visa'>VISA</option><option value='mastercard'>MasterCard</option><option value='amexpress'>AmericanExpress</option></select>"
                 metodoPago.innerHTML += "<br><br>";
-                metodoPago.innerHTML += "<label><b>Numero de tarjeta: </b></label><input id='numT' name='numT' type='number' placeholder='Numero de tarjeta'>";
+                metodoPago.innerHTML += "<label><b>Numero de tarjeta: </b></label><input id='numT' name='numT' type='number' placeholder='16 numeros'>";
                 metodoPago.innerHTML += "<br><br>";
-                metodoPago.innerHTML += "<label><b>Fecha de caducidad: </b></label><input id='fechaCad' name='fechaCad' type='text' placeholder='Introduce fecha de caducidad'>";
+                metodoPago.innerHTML += "<label><b>Fecha de caducidad: </b></label><input id='fechaCad' name='fechaCad' type='text' placeholder='Formato mm/aa'>";
                 metodoPago.innerHTML += "<br><br>";
-                metodoPago.innerHTML += "<label><b>Codigo de seguridad: </b></label><input id='codseg' name='codseg' type='number' placeholder='Introduce el codigo de seguridad'>";
+                metodoPago.innerHTML += "<label><b>Codigo de seguridad: </b></label><input id='codseg' name='codseg' type='number' placeholder='Tres digitos por la parte de atras'>";
             }
             //Si se selecciona paypal
             else if (metodo.options[metodo.selectedIndex].value == "paypal") {
