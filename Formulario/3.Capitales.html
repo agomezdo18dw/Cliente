@@ -3,7 +3,11 @@
 <head>
 <title>Datos</title>
 <meta charset="utf-8">
-<style></style>
+<style>
+    img {
+        width: 400px;
+    }
+</style>
 </head>
 <body>
 <div id="contenedor">
@@ -33,7 +37,7 @@
         <br>
         <input type="button" value="Im finished" onClick="Calificacion()">
     </form>
-    <div id="cali"></div>
+    <div><p id="cali"></p></div>
 </div>
     <script>
         //Recogemos la zona donde escribir la nota
@@ -69,24 +73,29 @@
         let nota = () => {
             let nota = document.querySelectorAll("input[type='radio']");
             let cont = 0;
-            for(i=0;i<nota.length;i++){
+            for(i=0;i<nota.length;i++) {
                 if (nota[i].checked == true && nota[i].value == "buena")
                     cont++;
             }
-            if (cont == 3){
-                cali += "<p>Aciertos 3</p>"
+            if (cont == 3) {
+                cali = "<p>Aciertos 3</p>"
                 cali += "<p>Gran trabajo</p>"
-                cali += "<p>Aciertos 3</p>"
+                cali += "<img src='img/win.gif'>"
                 return cali;
             }
-            else if (cont == 2)
-                return "Vas por buen camino."
-            else if (cont == 1)
-                return "Necesitas estudiar mas tiempo. Inténtalo de nuevo."
-            else
-                return "No creo que hayas estudiado."
-        }
-        
+            else if (cont == 2 || cont == 1) {
+                cali = "<p>Aciertos 1 o 2</p>"
+                cali += "<p>Eso esta bien</p>"
+                cali += "<img src='img/meh.jpg'>"
+                return cali;   
+            }
+            else {
+                cali = "<p>Aciertos 0</p>"
+                cali += "<p>Realmente necesitas hacerlo mejor</p>"
+                cali += "<img src='img/lose.gif'>"
+                return cali;   
+            }
+        }  
     </script>	
 </body>
 </html>

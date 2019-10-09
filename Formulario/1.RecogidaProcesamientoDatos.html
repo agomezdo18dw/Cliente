@@ -62,7 +62,7 @@
         let seleccion = () => {
             //Realizamos las validaciones para el nombre
             if (tieneNumeros(nombre.value) || tieneSimbolos(nombre.value) || tieneBlanco(nombre.value))
-                texto.innerHTML = "<p>Los nombre no tienen ni letras, ni simbolos y tampoco espacios en blanco, vuelve a introducir tu nombre</p>"
+                texto.innerHTML = "<p>Los nombre no tienen ni numeros, ni simbolos y tampoco espacios en blanco, vuelve a introducir tu nombre</p>"
             //Comprobamos que el nombre no esta vacio
             else if (vacio(nombre.value))
                 texto.innerHTML = "<p>No se puede dejar el nombre en blanco</p>";
