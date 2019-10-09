@@ -22,7 +22,7 @@
                 </div>
                 <div class="nose" onclick="cambiarIdioma('es')">
                     <img src="img/ikurri%C3%B1a.png" onclick="cambiarIdioma('eu')">
-                </div>
+                </div> 
             </div>
         </header>
         <nav>
