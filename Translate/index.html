@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="jquery.translate.js"></script>
+    <link rel="stylesheet" href="css/css.css">
+</head>
+
+<body>
+    <h4 class="trn" data-trn-key="t1">Hola, mi nombre es Adrian Gomez</h4>
+    <h4 class="trn" data-trn-key="t2">Tengo 20 años</h4>
+    <h4 class="trn" data-trn-key="t3">Asta luego</h4>
+    <input type="button" value="Español" onclick="cambiarIdioma('es')">
+    <input type="button" value="Euskera" onclick="cambiarIdioma('eu')">
+    <input type="button" value="Ingles" onclick="cambiarIdioma('en')">
+    <script>
+        var dict = {
+            "t1": {
+                en: "Hello, my name is Adrian Gomez",
+                eu: "Kaixo, nire izena Adrian Gomez da",
+                es: "Hola, mi nombre es Adrian Gomez"
+            },
+            "t2": {
+                en: "Im 20 years old",
+                eu: "20 urte ditut",
+                es: "Tengo 20 años"
+            },
+            "t3": {
+                en: "See you later",
+                eu: "Geroarte",
+                es: "Asta luego"
+            },
+        }
+        function cambiarIdioma(idioma){
+            var translator = $('body').translate({lang: idioma, t: dict});
+        }
+    </script>
+</body>
+</html>
