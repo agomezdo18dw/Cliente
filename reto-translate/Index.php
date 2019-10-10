@@ -16,13 +16,13 @@
             <div id="reloj" class="reloj, trn" data-trn-key="fechaHora">Cargando Fecha y hora...</div>
             <div id="idiomas">
                 <div class="nose" onclick="cambiarIdioma('es')">
-                    <img src="img/banderaEspa%C3%B1a.webp">
+                    <img src="img/banderas/banderaEspa%C3%B1a.webp">
                 </div>
                 <div class="nose" onclick="cambiarIdioma('en')">
-                    <img src="img/bandera-ingl%C3%A9s.png.webp">
+                    <img src="img/banderas/bandera-ingl%C3%A9s.png.webp">
                 </div>
                 <div class="nose" onclick="cambiarIdioma('eu')">
-                    <img src="img/ikurri%C3%B1a.png">
+                    <img src="img/banderas/ikurri%C3%B1a.png">
                 </div> 
             </div>
         </header>
