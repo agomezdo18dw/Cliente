@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../../../../jquery-3.4.1.min.js"></script>
+    <style>
+        #cuadrado {
+            position: absolute;
+            top: 250px;
+            left: 640px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        #botones{
+            text-align: center
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cuadrado"></div>
+    <div id="botones">
+        <input type="button" value="Mover abajo" id="posPlus">
+        <input type="button" value="Mover arriba" id="posMinus">
+        <input type="button" value="Mover derecha" id="posDer">
+        <input type="button" value="Mover izquierda" id="posIzq">
+        <input type="button" value="Agrandar cuadrado" id="cuadradoGrande">
+        <input type="button" value="Empequeñecer cuadrado" id="cuadradoPequeña">
+        <br><br>
+        <input type="button" value="Posicion inicial" id="inicio">
+    </div>
+    <script>
+        $(document).ready(function(){
+            $("#posPlus").click(function(){
+                $("#cuadrado").animate({
+                    top: "+=50px",
+                });
+            });
+            $("#posMinus").click(function(){
+                $("#cuadrado").animate({
+                    top: "-=50px",    
+                });
+            });
+            $("#posDer").click(function(){
+                $("#cuadrado").animate({
+                    left: "+=50px",    
+                });
+            });
+            $("#posIzq").click(function(){
+                $("#cuadrado").animate({
+                    left: "-=50px",    
+                });
+            });
+            $("#cuadradoGrande").click(function(){
+                $("#cuadrado").animate({
+                    width: "+=10px",    
+                    height: "+=10px",
+                });
+            });
+            $("#cuadradoPequeña").click(function(){
+                $("#cuadrado").animate({
+                    width: "-=10px",    
+                    height: "-=10px",
+                });
+            });
+            $("#inicio").click(function(){
+                $("#cuadrado").animate({
+                    top: "250px",
+                    left: "640px",
+                    width: "100px",
+                    height: "100px",
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
