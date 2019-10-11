@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../../../../jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <p>Hola me llamo Adrian Gomez</p>
+    <script>
+        $(document).ready(function(){
+            $("p").mouseenter(function(){
+               $(this).css('color','blue')
+            });
+            
+            $("p").mouseleave(function(){
+                $(this).css('color','brown')
+            });
+            
+            $("p").click(function(){
+                $(this).css('color','yellow')
+            });
+        });
+    </script>
+</body>
+</html>
