@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../../../../jquery-3.4.1.min.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <p id="texto"></p>
+    <input type="button" value="Añadir" id="añadir">
+    <input type="button" value="Eliminar" id="eliminar">
+
+    <script>
+        $(document).ready(function(){
+            $("#añadir").click(function(){
+                let textoNormal = "<p>Añadiendo una cosa</p>";
+                let textoJquery = $("<p></p>").text(", añadiendo 2 cosas");
+                let textoDom = document.innerHTML = ", añadiendo 3 cosas";
+                $("p").append(textoNormal, textoJquery, textoDom);
+
+            });
+            $("#eliminar").click(function(){
+                $("p").empty();
+            });
+        });
+    </script>
+</body>
+</html>
+

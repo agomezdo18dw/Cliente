@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="../../../../jquery-3.4.1.min.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <p id="primero">Hola me llamo Aitor</p>
+    <p id="segundo"><b>Tengo 20 años</b></p>
+    <a href="https://www.google.com">Enlace</a>
+    <br><br>
+    <input type="button" value="Cambiar texto">
+
+    <script>
+        $(document).ready(function(){
+            $("input").click(function(){
+                $("#primero").text("En realidad me llamo Adrian");
+                $("#segundo").html("Tengo 20 años");
+                $("a").attr("href", "https://www.twitter.com");
+            });
+        });
+    </script>
+</body>
+</html>
+
