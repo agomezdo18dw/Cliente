@@ -1,29 +1,40 @@
 //Esperamos a que la pagina se cargue entera
 $(document).ready(function () {
-    let primero = document.getElementById('primero')
+    //Recogemos los datos necesarios
+    let primero = document.getElementById('primero');
     let segundo = document.getElementById('segundo');
     let tercero = document.getElementById('tercero');
     let val = document.getElementById('val');
+    //Ocultamos los divs que no sean el primero
     $(segundo).hide();
     $(tercero).hide();
-
+    
+    //Al clicar en el primero boton
     $('#1').click(function () {
+        //Recoge la opacidad
         let opacidad = document.getElementById('opacidad');
+        //Realiza validaciones
         if (validarSiNumero(opacidad.value))
             val.innerHTML = "La opacidad tiene que ser un numero";
         else if (opacidad.value < 0)
             val.innerHTML = "La opacidad no puede ser menor a 0";
         else if (opacidad.value > 1)
             val.innerHTML = "La opacidad no puede ser mayor a 1";
+        //Si todo es correcto muestra el div con la opacidad dicha por el usuario
         else {
             val.innerHTML = '';
-            $(segundo).css("opacity", 0);
-            $(tercero).css("opacity", 0);
+            $(primero).show();
+            $(segundo).hide();
+            $(tercero).hide();
             $(primero).css("opacity", opacidad.value);
         }
     });
+    
+    //Al clicar en el segundo boton
     $('#2').click(function () {
+        //Recoge la opacidad
         let opacidad = document.getElementById('opacidad');
+        //Realiza validaciones
         if (validarSiNumero(opacidad.value))
             val.innerHTML = "La opacidad tiene que ser un numero";
         else if (opacidad.value < 0)
@@ -31,14 +42,18 @@ $(document).ready(function () {
         else if (opacidad.value > 1)
             val.innerHTML = "La opacidad no puede ser mayor a 1";
         else {
+            //Si todo es correcto muestra el div con la opacidad dicha por el usuario
             val.innerHTML = '';
             $(segundo).show();
-            $(primero).css("opacity", 0);
-            $(tercero).css("opacity", 0);
+            $(primero).hide();
+            $(tercero).hide();
             $(segundo).css("opacity", opacidad.value);
         }
     });
+    
+    //Al clicar en el segundo boton
     $('#3').click(function () {
+        //Recoge la opacidad
         let opacidad = document.getElementById('opacidad');
         if (validarSiNumero(opacidad.value))
             val.innerHTML = "La opacidad tiene que ser un numero";
@@ -47,16 +62,19 @@ $(document).ready(function () {
         else if (opacidad.value > 1)
             val.innerHTML = "La opacidad no puede ser mayor a 1";
         else {
+            //Si todo es correcto muestra el div con la opacidad dicha por el usuario
             val.innerHTML = '';
             $(tercero).show();
-            $(primero).css("opacity", 0);
-            $(segundo).css("opacity", 0);
+            $(primero).hide();
+            $(segundo).hide();
             $(tercero).css("opacity", opacidad.value);
         }
     });
-
+    
+    //Funcion para validar si un numero es realmente un numero
     let validarSiNumero = (numero) => {
         let numeroDecimal = /^\d*\.?\d*$/;
+        //Comparacion entre el numero y si es decimal, si es diremos false para que no se meta en el if
         if (numeroDecimal.test(numero))
             return false;
         else
