@@ -20,7 +20,7 @@ $(document).ready(function () {
             val.innerHTML = "La opacidad no puede ser menor a 0";
         else if (opacidad.value > 1)
             val.innerHTML = "La opacidad no puede ser mayor a 1";
-        //Si todo es correcto muestra el div con la opacidad dicha por el usuario
+        //Si todo es correcto muestra el div con la opacidad dicha por el usuario y los otros los baja a 0
         else {
             val.innerHTML = '';
             $(segundo).fadeTo("slow", 0);
@@ -41,7 +41,7 @@ $(document).ready(function () {
         else if (opacidad.value > 1)
             val.innerHTML = "La opacidad no puede ser mayor a 1";
         else {
-            //Si todo es correcto muestra el div con la opacidad dicha por el usuario
+            //Si todo es correcto muestra el div con la opacidad dicha por el usuario y los otros los baja a 0
             val.innerHTML = '';
             $(primero).fadeTo("slow", 0);
             $(tercero).fadeTo("slow", 0);
@@ -60,7 +60,7 @@ $(document).ready(function () {
         else if (opacidad.value > 1)
             val.innerHTML = "La opacidad no puede ser mayor a 1";
         else {
-            //Si todo es correcto muestra el div con la opacidad dicha por el usuario
+            //Si todo es correcto muestra el div con la opacidad dicha por el usuario y los otros los baja a 0
             val.innerHTML = '';
             $(primero).fadeTo("slow", 0);
             $(segundo).fadeTo("slow", 0);
