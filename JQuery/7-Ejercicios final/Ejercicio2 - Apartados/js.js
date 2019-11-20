@@ -1,7 +1,7 @@
 //Esperamos a que la pagina se cargue entera
 $(document).ready(function () {
     //Cogemos las variables necesarias
-    let primero = document.getElementById('primero')
+    let primero = document.getElementById('primero');
     let segundo = document.getElementById('segundo');
     let tercero = document.getElementById('tercero');
     //Ocultamos el segundo y el tercer div
