@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <form action="">
+        <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
+        <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
+        <input type="checkbox" name="vehicle3" value="Boat"> I have a boat<br>
+        <input type="button" onclick="pruebaCheckbox()" value="probar">
+    </form>
+    <form action="">
+        <input type="radio" name="vehicle" value="Bike"> I have a bike<br>
+        <input type="radio" name="vehicle" value="Car"> I have a car<br>
+        <input type="radio" name="vehicle" value="Boat"> I have a boat<br>
+        <input type="button" onclick="pruebaRadio()" value="probar">
+    </form>
+    <script>
+        let pruebaCheckbox = () => {
+            let arrayCheck = [];
+            let Checkbox = document.querySelectorAll("input[type='checkbox']");
+            for (i = 0; i < Checkbox.length; i++) {
+                if (Checkbox[i].checked == true)
+                    arrayCheck.push(Checkbox[i].value);
+            }
+            for (i = 0; i < arrayCheck.length; i++) {
+                console.log(arrayCheck[i]);
+            }
+
+        }
+        let pruebaRadio = () => {
+            let arrayradio = [];
+            let radio = document.querySelectorAll("input[type='radio']");
+            for (i = 0; i < radio.length; i++) {
+                if (radio[i].checked == true)
+                    arrayradio.push(radio[i].value);
+            }
+            console.log(arrayradio[0]);
+
+        }
+    </script>
+</body></html>
