@@ -45,11 +45,11 @@ class Tanque {
         return this.tipo;
     }
 
-    setvelocidad(velocidad) {
+    setVelocidad(velocidad) {
         this.velocidad = velocidad;
     }
 
-    getvelocidad() {
+    getVelocidad() {
         return this.velocidad;
     }
 
