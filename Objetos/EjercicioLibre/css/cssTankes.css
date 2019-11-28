@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+}
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+th {
+    height: 2em;
+    background-color: #b5b5b5;
+}
+td{
+    padding: 1em 0.5em;
+}

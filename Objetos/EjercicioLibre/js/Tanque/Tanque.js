@@ -1,7 +1,6 @@
 class Tanque {
-    constructor(modelo, fabricante, pais, tipo, velocidad, artilleria, peso, longitud, anchura, altura, tripulacion) {
+    constructor(modelo, pais, tipo, velocidad, artilleria, peso, longitud, anchura, altura, tripulacion) {
         this.modelo = modelo;
-        this.fabricante = fabricante;
         this.pais = pais;
         this.tipo = tipo;
         this.velocidad = velocidad;
@@ -19,14 +18,6 @@ class Tanque {
 
     getModelo() {
         return this.modelo;
-    }
-
-    setfabricante(fabricante) {
-        this.fabricante = fabricante;
-    }
-
-    getfabricante() {
-        return this.fabricante;
     }
 
     setPais(pais) {
