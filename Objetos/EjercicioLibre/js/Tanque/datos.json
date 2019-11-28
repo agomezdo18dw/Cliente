@@ -2,7 +2,6 @@
     "tanque": [
         {
             "modelo": "Tiger I",
-            "fabricante": "Henschel",
             "pais": "Alemania",
             "tipo": "Tanque pesado",
             "velocidad": "20-45km/h",
@@ -15,7 +14,6 @@
         },
         {
             "modelo": "T-34",
-            "fabricante": "Fabrica Diesel Nº 75, Fábrica Kirov Nº 185, Fábrica Dinamo de Moscú, KhPZ Nº 183, Fábrica de Tractores de Stalingrado (STZ) y Fábrica Krasnoye Sormovo No. 112",
             "pais": "Union Sovietica",
             "tipo": "Tanque medio",
             "velocidad": "26-55km/h",
@@ -28,7 +26,6 @@
         },
         {
             "modelo": "M4 Sherman",
-            "fabricante": "Pressed Steel Car Company, Baldwin Locomotive Works, American Locomotive Co., Pullman-Standard Car Company y Detroit Tank Arsenal ",
             "pais": "Estados Unidos",
             "tipo": "Tanque medio",
             "velocidad": "35-48km/h",
