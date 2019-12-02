@@ -1,3 +1,14 @@
 body {
     text-align: center;
 }
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th {
+    background-color:  #b5b5b5;
+    padding: 1em;
+}

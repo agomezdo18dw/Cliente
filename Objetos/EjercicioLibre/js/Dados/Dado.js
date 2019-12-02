@@ -10,5 +10,9 @@ class Dado {
     getLados() {
         return this.lados;
     }
+
+    getRandom() {
+        return Math.floor(Math.random() * this.lados) + 1;
+    }
 };
 export { Dado };

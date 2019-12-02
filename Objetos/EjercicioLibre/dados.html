@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,32 @@
     <link rel="stylesheet" href="css/cssDados.css">
     <title>Dados</title>
 </head>
+
 <body>
     <h1>Juego de los dados</h1>
-    <label>Numero de dados: </label><input type="number" id="nDados">
-    <br>
-    <label>Numero de lados de los dados: </label><input type="number" id="nLados">
-    <br>
-    <input type="button" id="guardar" value="Jugar">
+    <p>Eliges el numero de dados y la cantidad de lados de cada dado, luego le das a tirar, tienes un maximo de 6 tiradas para conseguir sacar el mismo numero en cada dado</p>
+    <div id="divReiniciar">
+        <p>Pulsa el boton para reiniciar</p>
+        <input type="button" id="reiniciar" value="Volver a empezar">
+        <br>
+    </div>
+    <div id="inicio">
+        <label>Numero de dados (Min 2. - Max. 4): </label><input type="number" id="nDados">
+        <br>
+        <label>Numero de lados de los dados (Min. 3 - Max. 8): </label><input type="number" id="nLados">
+        <br>
+        <input type="button" id="jugar" value="Jugar">
+    </div>
+    <div id="juego">
+        <h3 id="h3NDados">Numero de dados: </h3>
+        <h3 id="h3NLados">Numero de lados de cada dado: </h3>
+        <input type="button" id="tirada" value="Tirar">
+        <br><br>
+    </div>
+    <div id="tiradas">
 
+    </div>
+    
 </body>
+
 </html>
