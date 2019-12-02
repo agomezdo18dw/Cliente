@@ -5,6 +5,8 @@ $(document).ready(function () {
     let nTiradas = 1;
     $("#juego").hide();
     $("#divReiniciar").hide();
+    $("#ganador").hide();
+    $("#perdedor").hide();
 
     //Al pulsar en el boton de jugar
     $('#jugar').click(function () {
@@ -38,18 +40,39 @@ $(document).ready(function () {
         document.getElementById("tiradas").innerHTML = tabla;
     });
 
-    $('#tirada').click(function () {
+    $('#tirar').click(function () {
+        let numeros = [];
+        for (let i = 0; i < dados.length; i++) 
+            numeros[i] = dados[i].getRandom();
+        
         let fila = "<tr>";
         fila += "<td><b>" + nTiradas + "</b></td>"
-        for (let i = 0; i < dados.length; i++) 
-            fila += "<td>" + dados[i].getRandom() + "</td>";
-        
+        for (let i = 0; i < numeros.length; i++) 
+            fila += "<td>" + numeros[i] + "</td>";
         fila += "</tr>";
         $('#tabla').append(fila);
+        
+        let distinctNumeros = [...new Set(numeros)]
 
-        if (nTiradas === 6)
+        if (distinctNumeros.length === 1){
             $("#tirada").prop('disabled', true);
-
+            $("#juego").hide();
+            let ganador = ''
+            if (nTiradas === 1)
+                ganador = "<h3>Has necesitado "+ nTiradas +" tirada para ganar</h3><p>Dale al boton de <i>Volver a empezar</i> para reiniciar</p>"
+            else
+                ganador = "<h3>Has necesitado "+ nTiradas +" tiradas para ganar</h3><p>Dale al boton de <i>Volver a empezar</i> para reiniciar</p>"
+            $('#ganador').append(ganador);
+            $("#ganador").show();
+        }
+        else if (nTiradas === 6) {
+            $("#tirar").prop('disabled', true);
+            $("#juego").hide();
+            $("#perdedor").show();
+            let perdedor = "<h3>Tras 6 tiradas no has sido capaz de sacar los mismo numeros</h3><p>Dale al boton de <i>Volver a empezar</i> para reiniciar</p>"
+            $('#perdedor').append(perdedor);
+        }
+            
         nTiradas++;
     });
 

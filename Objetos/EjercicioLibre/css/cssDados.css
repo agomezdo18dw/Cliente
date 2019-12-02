@@ -12,3 +12,11 @@ th {
     background-color:  #b5b5b5;
     padding: 1em;
 }
+
+#tGanador {
+    color: green;
+}
+
+#tPerdedor {
+    color: red;
+}
