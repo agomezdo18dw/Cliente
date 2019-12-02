@@ -26,10 +26,6 @@ $(document).ready(function () {
         $("#h3NDados").append(nDados);
         $("#h3NLados").append(nLados);
 
-        for (let i = 0; i < dados.length; i++) {
-            console.log("Lados del dado " + (i + 1) + ": " + dados[i].getRandom())
-        }
-
         let tabla = '<table border=1 id="tabla">';
         tabla += "<tr>";
         tabla += "<th>Tirada</th>"
