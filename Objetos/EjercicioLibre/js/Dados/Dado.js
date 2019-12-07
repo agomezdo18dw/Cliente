@@ -10,7 +10,7 @@ class Dado {
     getLados() {
         return this.lados;
     }
-
+    //Obetemos las tiradas
     getRandom() {
         return Math.floor(Math.random() * this.lados) + 1;
     }
