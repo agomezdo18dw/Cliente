@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    
+    
     $.get("https://swapi.co/", function (data, status) {
         if (status == "success") {
             for (let i = 0; i < data.length; i++) {
