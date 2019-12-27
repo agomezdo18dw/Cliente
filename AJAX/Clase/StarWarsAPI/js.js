@@ -67,7 +67,7 @@ let postJs = () => {
         $('#errorNum').show();
     }
     else if (numero <= 3){
-        $('#errorNum').text(" → Tienes que escribir un numero mayor a 3, porque 1,2 y 3 ya existen")
+        $('#errorNum').text(" → Tienes que escribir un numero mayor a 3, porque 1, 2 y 3 ya existen")
         $('#errorNum').show();
     }
     else if (vacio(title)){
