@@ -20,13 +20,20 @@
             padding: 1em 5em;
         }
 
+        .error{
+            color: red;
+        }
+
+        .info{
+            color: blue;
+        }
     </style>
 </head>
 
 <body>
     <h1>Star Wars API + data intro</h1>
-    <span><b>Número: </b></span><input type="text" id="numero"><br>
-    <span><b>Titulo: </b></span><input type="text" id="title"><br>
+    <span><b>Número: </b></span><input type="text" id="numero"><span class="error" id="errorNum"></span><br>
+    <span><b>Titulo: </b></span><input type="text" id="title"><span class="error" id="errorTit"></span><br>
     <select name="select" id="tipos">
         <option value="people">Personas</option>
         <option value="planets">Planetas</option>
@@ -36,6 +43,11 @@
     <input type="button" value="Get JQuery" id="getJquery">
     <input type="button" value="Post JS" onclick="postJs()">
     <input type="button" value="Post JQuery" id="postJquery">
+    <br>
+    <div id="Post">
+        <h1>Id: <span class="info" id="id"></span></h1>
+        <h1>Titulo: <span class="info" id="titulo"></span></h1>
+    </div>
 </body>
 
 </html>
