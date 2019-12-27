@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#errorTit').hide();
     $('#Post').hide();
 
-    $('#getJquery').click(function () {        
+    $('#getJquery').click(function () {
         let numero = document.getElementById('numero').value;
         let tipos = document.getElementById("tipos");
         let tipo = tipos.options[tipos.selectedIndex].value;
@@ -20,17 +20,37 @@ $(document).ready(function () {
     $('#postJquery').click(function () {
         let numero = document.getElementById('numero').value;
         let title = document.getElementById('title').value;
-        $.post("https://my-json-server.typicode.com/typicode/demo/posts", {
-                id: numero,
-                title: title
-            },
-            function (data, status) {
-                if (status == "success") {
-                    console.log(data)
-                } else {
-                    console.log('error')
-                }
-            });
+        if (vacio(numero)) {
+            $('#errorNum').text(" → No puedes dejar en blanco el campo numero");
+            $('#errorNum').show();
+        } else if (numeros(numero)) {
+            $('#errorNum').text(" → Solo puedes escribir numeros");
+            $('#errorNum').show();
+        } else if (numero <= 3) {
+            $('#errorNum').text(" → Tienes que escribir un numero mayor a 3, porque 1, 2 y 3 ya existen")
+            $('#errorNum').show();
+        } else if (vacio(title)) {
+            $('#errorNum').hide();
+            $('#errorTit').text(" → No puedes dejar en blanco el campo titulo")
+            $('#errorTit').show();
+        } else {
+            $('#errorNum').hide();
+            $('#errorTit').hide();
+            $.post("https://my-json-server.typicode.com/typicode/demo/posts", {
+                    id: numero,
+                    title: title
+                },
+                function (data, status) {
+                    if (status == "success") {
+                        $('#tipo').text('Jquery');
+                        $('#id').text(data.id);
+                        $('#titulo').text(data.title);
+                        $('#Post').show();
+                    } else {
+                        console.log('error')
+                    }
+                });
+        }
     });
 });
 
@@ -58,24 +78,20 @@ let postJs = () => {
     $('#Post').hide();
     let numero = document.getElementById('numero').value;
     let title = document.getElementById('title').value;
-    if (vacio(numero)){
+    if (vacio(numero)) {
         $('#errorNum').text(" → No puedes dejar en blanco el campo numero");
         $('#errorNum').show();
-    }
-    else if (numeros(numero)){
+    } else if (numeros(numero)) {
         $('#errorNum').text(" → Solo puedes escribir numeros");
         $('#errorNum').show();
-    }
-    else if (numero <= 3){
+    } else if (numero <= 3) {
         $('#errorNum').text(" → Tienes que escribir un numero mayor a 3, porque 1, 2 y 3 ya existen")
         $('#errorNum').show();
-    }
-    else if (vacio(title)){
+    } else if (vacio(title)) {
         $('#errorNum').hide();
         $('#errorTit').text(" → No puedes dejar en blanco el campo titulo")
         $('#errorTit').show();
-    }
-    else {
+    } else {
         $('#errorNum').hide();
         $('#errorTit').hide();
         //Preparamos la llamada
@@ -86,6 +102,7 @@ let postJs = () => {
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 201) { //Normalmente el post usa 201 en vez de 200
                 let post = JSON.parse(this.responseText);
+                $('#tipo').text('JS');
                 $('#id').text(post.id);
                 $('#titulo').text(post.title);
                 $('#Post').show();
