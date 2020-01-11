@@ -15,8 +15,8 @@ $(document).ready(function () {
                 console.log(data)
                 if (tipo === "people") {
                     $('#Get').text('');
-                    $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - People</span></b></p>');
-                    $('#Get').append('<p><b>Nombre: </b><span class="info>' + data.name + '</span></p>')
+                    $('#Get').append('<p><b>Get <span class="info" id="tipo">JQuery - People</span></b></p>');
+                    $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
                     $('#Get').append('<p><b>Altura: </b><span class="info">' + data.height + '</span></p>')
                     $('#Get').append('<p><b>Peso: </b><span class="info">' + data.mass + '</span></p>')
                     $('#Get').append('<p><b>Color de pelo: </b><span class="info">' + data.hair_color + '</span></p>')
@@ -39,8 +39,8 @@ $(document).ready(function () {
                 }
                 else if (tipo === "planets") {
                     $('#Get').text('');
-                    $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - Planets</span></b></p>');
-                    $('#Get').append('<p><b>Nombre: </b><span class="info>' + data.name + '</span></p>')
+                    $('#Get').append('<p><b>Get <span class="info" id="tipo">JQuery - Planets</span></b></p>');
+                    $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
                     $('#Get').append('<p><b>Periodo de rotacion: </b><span class="info">' + data.rotation_period + '</span></p>')
                     $('#Get').append('<p><b>Periodo orbital: </b><span class="info">' + data.orbital_period + '</span></p>')
                     $('#Get').append('<p><b>Diametro: </b><span class="info">' + data.diameter + '</span></p>')
@@ -58,8 +58,8 @@ $(document).ready(function () {
                 }
                 else if (tipo === "starships") {
                     $('#Get').text('');
-                    $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - Starships</span></b></p>');
-                    $('#Get').append('<p><b>Nombre: </b><span class="info>' + data.name + '</span></p>')
+                    $('#Get').append('<p><b>Get <span class="info" id="tipo">JQuery - Starships</span></b></p>');
+                    $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
                     $('#Get').append('<p><b>Modelo: </b><span class="info">' + data.model + '</span></p>')
                     $('#Get').append('<p><b>Manufacturador: </b><span class="info">' + data.manufacturer + '</span></p>')
                     $('#Get').append('<p><b>Coste: </b><span class="info">' + data.cost_in_credits + '</span></p>')
@@ -141,7 +141,7 @@ let getJS = () => {
             if (tipo === "people") {
                 $('#Get').text('');
                 $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - People</span></b></p>');
-                $('#Get').append('<p><b>Nombre: </b><span class="info>' + data.name + '</span></p>')
+                $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
                 $('#Get').append('<p><b>Altura: </b><span class="info">' + data.height + '</span></p>')
                 $('#Get').append('<p><b>Peso: </b><span class="info">' + data.mass + '</span></p>')
                 $('#Get').append('<p><b>Color de pelo: </b><span class="info">' + data.hair_color + '</span></p>')
@@ -165,7 +165,7 @@ let getJS = () => {
             else if (tipo === "planets") {
                 $('#Get').text('');
                 $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - Planets</span></b></p>');
-                $('#Get').append('<p><b>Nombre: </b><span class="info>' + data.name + '</span></p>')
+                $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
                 $('#Get').append('<p><b>Periodo de rotacion: </b><span class="info">' + data.rotation_period + '</span></p>')
                 $('#Get').append('<p><b>Periodo orbital: </b><span class="info">' + data.orbital_period + '</span></p>')
                 $('#Get').append('<p><b>Diametro: </b><span class="info">' + data.diameter + '</span></p>')
@@ -184,7 +184,7 @@ let getJS = () => {
             else if (tipo === "starships") {
                 $('#Get').text('');
                 $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - Starships</span></b></p>');
-                $('#Get').append('<p><b>Nombre: </b><span class="info>' + data.name + '</span></p>')
+                $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
                 $('#Get').append('<p><b>Modelo: </b><span class="info">' + data.model + '</span></p>')
                 $('#Get').append('<p><b>Manufacturador: </b><span class="info">' + data.manufacturer + '</span></p>')
                 $('#Get').append('<p><b>Coste: </b><span class="info">' + data.cost_in_credits + '</span></p>')
