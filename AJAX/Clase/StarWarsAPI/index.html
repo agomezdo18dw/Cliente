@@ -15,6 +15,7 @@
     <style>
         .botones {
             width: 24%;
+            margin: 0 0.5%;
         }
     </style>
 </head>
@@ -47,14 +48,32 @@
             </div>
         </div>
         <div class="form-group row justify-content-center">
-            <div class="p-auto">
-                <input class="botones btn btn-primary" value="Get JS" onclick="getJS()">
-                <input class="botones btn btn-primary" value="Get JQuery" id="getJquery">
-                <input class="botones btn btn-primary" value="Post JS" onclick="postJs()">
-                <input class="botones btn btn-primary" value="Post JQuery" id="postJquery">
-            </div>
+            <input type="button" class="botones btn btn-primary" value="Get JS" onclick="getJS()">
+            <input type="button" class="botones btn btn-primary" value="Get JQuery" id="getJquery">
+            <input type="button" class="botones btn btn-primary" value="Post JS" onclick="postJs()">
+            <input type="button" class="botones btn btn-primary" value="Post JQuery" id="postJquery">
         </div>
     </form>
+    <h2 class="text-center" id="tipo"></h2>
+    <table class="table table-striped" id="get">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Altura/Pesp</th>
+            <th scope="col">Pelo/Piel/Ojos</th>
+            <th scope="col">Nacimiento</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Pelis</th>
+            <th scope="col">Especie</th>
+            <th scope="col">Vehiculos</th>
+            <th scope="col">Naves</th>
+            <th scope="col">URL</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
     <div id="Post">
         <p><b>Post <span class="info" id="tipo"></span></b></p>
         <p><b>Id: </b><span class="info" id="id"></span></p>

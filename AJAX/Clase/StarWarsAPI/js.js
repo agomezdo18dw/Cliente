@@ -2,7 +2,7 @@ $(document).ready(function () {
     $('#errorNum').hide();
     $('#errorTit').hide();
     $('#Post').hide();
-    $('#Get').hide();
+    $('#get').hide();
 
     $('#getJquery').click(function () {
         $('#Post').hide();
@@ -36,8 +36,7 @@ $(document).ready(function () {
                     especie(data.species)
                     vehiculos(data.vehicles)
                     naves(data.starships)
-                }
-                else if (tipo === "planets") {
+                } else if (tipo === "planets") {
                     $('#Get').text('');
                     $('#Get').append('<p><b>Get <span class="info" id="tipo">JQuery - Planets</span></b></p>');
                     $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
@@ -55,8 +54,7 @@ $(document).ready(function () {
                     $('#Get').show();
                     residentes(data.residents)
                     films(data.films)
-                }
-                else if (tipo === "starships") {
+                } else if (tipo === "starships") {
                     $('#Get').text('');
                     $('#Get').append('<p><b>Get <span class="info" id="tipo">JQuery - Starships</span></b></p>');
                     $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
@@ -107,9 +105,9 @@ $(document).ready(function () {
             $('#errorNum').hide();
             $('#errorTit').hide();
             $.post("https://my-json-server.typicode.com/typicode/demo/posts", {
-                id: numero,
-                title: title
-            },
+                    id: numero,
+                    title: title
+                },
                 function (data, status) {
                     if (status == "success") {
                         $('#tipo').text('Jquery');
@@ -124,8 +122,8 @@ $(document).ready(function () {
     });
 });
 
+let num = 1;
 let getJS = () => {
-    $('#Post').hide();
     let numero = document.getElementById('numero').value;
     let tipos = document.getElementById("tipos");
     let tipo = tipos.options[tipos.selectedIndex].value;
@@ -139,30 +137,29 @@ let getJS = () => {
         if (request.status >= 200 && request.status < 400) {
             console.log(data)
             if (tipo === "people") {
-                $('#Get').text('');
-                $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - People</span></b></p>');
-                $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
-                $('#Get').append('<p><b>Altura: </b><span class="info">' + data.height + '</span></p>')
-                $('#Get').append('<p><b>Peso: </b><span class="info">' + data.mass + '</span></p>')
-                $('#Get').append('<p><b>Color de pelo: </b><span class="info">' + data.hair_color + '</span></p>')
-                $('#Get').append('<p><b>Color de piel: </b><span class="info">' + data.skin_color + '</span></p>')
-                $('#Get').append('<p><b>Color de ojos: </b><span class="info">' + data.eye_color + '</span></p>')
-                $('#Get').append('<p><b>Año de nacimiento: </b><span class="info">' + data.birth_year + '</span></p>')
-                $('#Get').append('<p><b>Genero: </b><span class="info">' + data.gender + '</span></p>')
-                $('#Get').append('<p><b>Residencia: </b><span class="info" id="residencia">Cargando...</span></p>')
-                $('#Get').append('<p><b>Pelis: </b><span class="info" id="films">Cargando...</span></p>')
-                $('#Get').append('<p><b>Especie: </b><span class="info" id="especie">Cargando...</span></p>')
-                $('#Get').append('<p><b>Vehiculos: </b><span class="info" id="vehiculos">Cargando...</span></p>')
-                $('#Get').append('<p><b>Naves: </b><span class="info" id="naves">Cargando...</span></p>')
-                $('#Get').append('<p><b>URL: </b><span class="info">' + data.url + '</span></p>')
-                $('#Get').show();
-                homeworld(data.homeworld)
-                films(data.films)
-                especie(data.species)
-                vehiculos(data.vehicles)
-                naves(data.starships)
-            }
-            else if (tipo === "planets") {
+                $('#tipo').text('Get JS - Personas');
+                $('#get').show();
+                $('tbody').append('<tr>');
+                $('tbody').append('<th scope="row">' + data.name + '</th>')
+                $('tbody').append('<th>' + data.height + '/' + data.mass + '</th>')
+                $('tbody').append('<th>' + data.hair_color + '/' + data.skin_color + '/' + data.eye_color + '</th>')
+                $('tbody').append('<th>' + data.birth_year + '</th>')
+                $('tbody').append('<th>' + data.gender + '</th>')
+                $('tbody').append('<th id="residencia' + num + '">Cargando...</th>')
+                $('tbody').append('<th id="films' + num + '">Cargando...</th>')
+                $('tbody').append('<th id="especie' + num + '">Cargando...</th>')
+                $('tbody').append('<th id="vehiculos' + num + '">Cargando...</th>')
+                $('tbody').append('<th id="naves' + num + '">Cargando...</th>')
+                $('tbody').append('<th>' + data.url + '</th>')
+                $('tbody').append('</tr>')
+                $('tbody').show();
+                homeworld(data.homeworld, num)
+                films(data.films, num)
+                especie(data.species, num)
+                vehiculos(data.vehicles, num)
+                naves(data.starships, num)
+                num++;
+            } else if (tipo === "planets") {
                 $('#Get').text('');
                 $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - Planets</span></b></p>');
                 $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
@@ -180,8 +177,7 @@ let getJS = () => {
                 $('#Get').show();
                 residentes(data.residents)
                 films(data.films)
-            }
-            else if (tipo === "starships") {
+            } else if (tipo === "starships") {
                 $('#Get').text('');
                 $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - Starships</span></b></p>');
                 $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
@@ -270,7 +266,7 @@ let numeros = (dato) => {
         return true
 }
 
-let homeworld = (link) => {
+let homeworld = (link, num) => {
     //Preparamos la llamada
     let request = new XMLHttpRequest();
     //Definimos el tipo de peticion asi com la url
@@ -279,16 +275,15 @@ let homeworld = (link) => {
         //almacenamos JSON  
         let data = JSON.parse(this.response)
         if (request.status >= 200 && request.status < 400) {
-            document.getElementById("residencia").innerHTML = data.name;
-        }
-        else {
+            document.getElementById("residencia" + num).innerHTML = data.name;
+        } else {
             console.log("error extraInfo")
         }
     }
     request.send();
 }
 
-let films = (link) => {
+let films = (link, num) => {
     let pelis = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
@@ -300,20 +295,19 @@ let films = (link) => {
             let data = JSON.parse(this.response)
             if (request.status >= 200 && request.status < 400) {
                 pelis += data.title + ", "
-            }
-            else {
+            } else {
                 console.log("error extraInfo")
             }
         }
         request.send();
     }
     if (pelis == '')
-        document.getElementById("films").innerHTML = "No sale en pelis";
+        document.getElementById("films" + num).innerHTML = "No sale en pelis";
     else
-        document.getElementById("films").innerHTML = pelis;
+        document.getElementById("films" + num).innerHTML = pelis;
 }
 
-let especie = (link) => {
+let especie = (link, num) => {
     //Preparamos la llamada
     let request = new XMLHttpRequest();
     //Definimos el tipo de peticion asi com la url
@@ -322,16 +316,15 @@ let especie = (link) => {
         //almacenamos JSON  
         let data = JSON.parse(this.response)
         if (request.status >= 200 && request.status < 400) {
-            document.getElementById("especie").innerHTML = data.name;
-        }
-        else {
+            document.getElementById("especie" + num).innerHTML = data.name;
+        } else {
             console.log("error extraInfo")
         }
     }
     request.send();
 }
 
-let vehiculos = (link) => {
+let vehiculos = (link, num) => {
     let vehiculos = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
@@ -343,20 +336,19 @@ let vehiculos = (link) => {
             let data = JSON.parse(this.response)
             if (request.status >= 200 && request.status < 400) {
                 vehiculos += data.name + ", "
-            }
-            else {
+            } else {
                 console.log("error extraInfo")
             }
         }
         request.send();
     }
     if (vehiculos == '')
-        document.getElementById("vehiculos").innerHTML = "No tiene vehiculos";
+        document.getElementById("vehiculos" + num).innerHTML = "No tiene vehiculos";
     else
-        document.getElementById("vehiculos").innerHTML = vehiculos;
+        document.getElementById("vehiculos" + num).innerHTML = vehiculos;
 }
 
-let naves = (link) => {
+let naves = (link, i) => {
     let naves = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
@@ -368,20 +360,19 @@ let naves = (link) => {
             let data = JSON.parse(this.response)
             if (request.status >= 200 && request.status < 400) {
                 naves += data.name + ", "
-            }
-            else {
+            } else {
                 console.log("error extraInfo")
             }
         }
         request.send();
     }
     if (naves == '')
-        document.getElementById("naves").innerHTML = "No tiene naves";
+        document.getElementById("naves" + num).innerHTML = "No tiene naves";
     else
-        document.getElementById("naves").innerHTML = naves;
+        document.getElementById("naves" + num).innerHTML = naves;
 }
 
-let residentes = (link) => {
+let residentes = (link, i) => {
     let residentes = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
@@ -393,20 +384,19 @@ let residentes = (link) => {
             let data = JSON.parse(this.response)
             if (request.status >= 200 && request.status < 400) {
                 residentes += data.name + ", "
-            }
-            else {
+            } else {
                 console.log("error extraInfo")
             }
         }
         request.send();
     }
     if (residentes == '')
-        document.getElementById("residentes").innerHTML = "No hay residentes";
+        document.getElementById("residentes" + num).innerHTML = "No hay residentes";
     else
-        document.getElementById("residentes").innerHTML = residentes;
+        document.getElementById("residentes" + num).innerHTML = residentes;
 }
 
-let pilotos = (link) => {
+let pilotos = (link, i) => {
     let pilotos = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
@@ -418,15 +408,14 @@ let pilotos = (link) => {
             let data = JSON.parse(this.response)
             if (request.status >= 200 && request.status < 400) {
                 pilotos += data.name + ", "
-            }
-            else {
+            } else {
                 console.log("error extraInfo")
             }
         }
         request.send();
     }
     if (pilotos == '')
-        document.getElementById("pilotos").innerHTML = "No tiene pilotos";
+        document.getElementById("pilotos" + num).innerHTML = "No tiene pilotos";
     else
-        document.getElementById("pilotos").innerHTML = pilotos;
+        document.getElementById("pilotos" + num).innerHTML = pilotos;
 }
