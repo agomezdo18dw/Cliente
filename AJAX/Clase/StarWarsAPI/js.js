@@ -3,6 +3,8 @@ $(document).ready(function () {
     $('#errorTit').hide();
     $('#Post').hide();
     $('#get').hide();
+    $('#persona').hide();
+    $('#planeta').hide();
 
     $('#getJquery').click(function () {
         $('#Post').hide();
@@ -139,6 +141,8 @@ let getJS = () => {
             if (tipo === "people") {
                 $('#tipo').text('Get JS - Personas');
                 $('#get').show();
+                $('#persona').show();
+                $('#planeta').hide();
                 $('tbody').append('<tr>');
                 $('tbody').append('<th scope="row">' + data.name + '</th>')
                 $('tbody').append('<th>' + data.height + '/' + data.mass + '</th>')
@@ -160,23 +164,25 @@ let getJS = () => {
                 naves(data.starships, num)
                 num++;
             } else if (tipo === "planets") {
-                $('#Get').text('');
-                $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - Planets</span></b></p>');
-                $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
-                $('#Get').append('<p><b>Periodo de rotacion: </b><span class="info">' + data.rotation_period + '</span></p>')
-                $('#Get').append('<p><b>Periodo orbital: </b><span class="info">' + data.orbital_period + '</span></p>')
-                $('#Get').append('<p><b>Diametro: </b><span class="info">' + data.diameter + '</span></p>')
-                $('#Get').append('<p><b>Clima: </b><span class="info">' + data.climate + '</span></p>')
-                $('#Get').append('<p><b>Gravedad: </b><span class="info">' + data.gravity + '</span></p>')
-                $('#Get').append('<p><b>Terreno: </b><span class="info">' + data.terrain + '</span></p>')
-                $('#Get').append('<p><b>Superficie del agua: </b><span class="info">' + data.surface_water + '</span></p>')
-                $('#Get').append('<p><b>Poblacion: </b><span class="info">' + data.population + '</span></p>')
-                $('#Get').append('<p><b>Residentes: </b><span class="info" id="residentes">Cargando...</span></p>')
-                $('#Get').append('<p><b>Pelis: </b><span class="info" id="films">Cargando...</span></p>')
-                $('#Get').append('<p><b>URL: </b><span class="info">' + data.url + '</span></p>')
-                $('#Get').show();
-                residentes(data.residents)
-                films(data.films)
+                $('#tipo').text('Get JS - Planetas');
+                $('#persona').hide();
+                $('#planeta').show();
+                $('tbody').text();
+                $('tbody').append('<th scope="row">' + data.name + '</th>')
+                $('tbody').append('<th>' + data.rotation_period + '/' + data.orbital_period + '</th>')
+                $('tbody').append('<th>' + data.diameter + '</th>')
+                $('tbody').append('<th>' + data.climate + '</th>')
+                $('tbody').append('<th>' + data.gravity + '</th>')
+                $('tbody').append('<th>' + data.terrain + '</th>')
+                $('tbody').append('<th>' + data.surface_water + '</th>')
+                $('tbody').append('<th>' + data.population + '</th>')
+                $('tbody').append('<th id="residentes' + num + '">Cargando...</th>')
+                $('tbody').append('<th id="films' + num + '">Cargando...</th>')
+                $('tbody').append('<th>' + data.url + '</th>')
+                $('tbody').show();
+                residentes(data.residents, num)
+                films(data.films, num)
+                num++;
             } else if (tipo === "starships") {
                 $('#Get').text('');
                 $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - Starships</span></b></p>');
