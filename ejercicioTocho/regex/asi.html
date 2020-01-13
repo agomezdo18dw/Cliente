@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+<body>
+<div class="container">
+ <form action="/action_page.php">
+   <label for="usrname">Username</label>
+   <input type="text" id="usrname" name="usrname" required>
+
+   <label for="psw">Password</label>
+     <input type="text" id="psw" name="psw" pattern="(?=.*\d).{6,}" title="Seis carácteres y dígitos" required>
+
+   <input type="submit" value="Submit">
+ </form>
+</div>
+
+<div id="message">
+ <h3>La contraseña tiene que ser del siguiente tipo:</h3>
+ <p id="numero" class="invalid">Contener un <b>Número</b></p>
+ <p id="mayus" class="invalid">Contener una <b>Mayuscula</b></p>
+ <p id="minus" class="invalid">Contener una <b>Minuscula</b></p>
+</div> 
+</body>
+</html>
+<script type="text/javascript">
+        var myInput = document.getElementById("psw");
+       var numero = document.getElementById("numero");
+        var patronnumero = /[0-9]/g;
+        var patronmayus = /[A-Z]/g;
+        var patronminus = /[a-z]/g;
+        
+       //Cuando el usuario pulsa sobre la contraseña
+       myInput.onfocus = function() {
+         document.getElementById("message").style.display = "block";
+       }
+       // Cuando el usuario pulsa fuera de la contraseña
+       myInput.onblur = function() {
+         document.getElementById("message").style.display = "none";
+       }
+       //Se verifica según teclea
+        myInput.onkeyup = function() {
+            //verificamos el patron con la regex de tipo numerico
+             if(myInput.value.match(patronnumero)) {
+                 //Cambiamos la clase del mensaje
+               numero.classList.remove("invalid");
+               numero.classList.add("valid");
+            } else {
+                //Cambiamos la clase del mensaje
+               numero.classList.remove("valid");
+               numero.classList.add("invalid");
+           }
+           //Falta validar letras mayusculas
+           if(myInput.value.match(patronmayus)) {
+                 //Cambiamos la clase del mensaje
+               mayus.classList.remove("invalid");
+               mayus.classList.add("valid");
+            } else {
+                //Cambiamos la clase del mensaje
+               mayus.classList.remove("valid");
+               mayus.classList.add("invalid");
+           }
+           //Falta validar letras minúsculas
+           if(myInput.value.match(patronminus)) {
+                 //Cambiamos la clase del mensaje
+               minus.classList.remove("invalid");
+               minus.classList.add("valid");
+            } else {
+                //Cambiamos la clase del mensaje
+               minus.classList.remove("valid");
+               minus.classList.add("invalid");
+           }
+           //Falta validar el tamaño de la contraseña introducida
+       }
+</script>

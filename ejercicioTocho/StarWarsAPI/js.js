@@ -2,9 +2,8 @@ $(document).ready(function () {
     $('#errorNum').hide();
     $('#errorTit').hide();
     $('#Post').hide();
-    $('#get').hide();
-    $('#persona').hide();
-    $('#planeta').hide();
+    $('#getPersona').hide();
+    $('#getPlaneta').hide();
 
     $('#getJquery').click(function () {
         $('#Post').hide();
@@ -140,21 +139,21 @@ let getJS = () => {
             console.log(data)
             if (tipo === "people") {
                 $('#tipo').text('Get JS - Personas');
-                $('#get').show();
-                $('#persona').show();
-                $('#planeta').hide();
+                $('#getPlaneta').hide();
+                $('#getPersona').show();
+                $('tbody').text();
                 $('tbody').append('<tr>');
-                $('tbody').append('<th scope="row">' + data.name + '</th>')
-                $('tbody').append('<th>' + data.height + '/' + data.mass + '</th>')
-                $('tbody').append('<th>' + data.hair_color + '/' + data.skin_color + '/' + data.eye_color + '</th>')
-                $('tbody').append('<th>' + data.birth_year + '</th>')
-                $('tbody').append('<th>' + data.gender + '</th>')
-                $('tbody').append('<th id="residencia' + num + '">Cargando...</th>')
-                $('tbody').append('<th id="films' + num + '">Cargando...</th>')
-                $('tbody').append('<th id="especie' + num + '">Cargando...</th>')
-                $('tbody').append('<th id="vehiculos' + num + '">Cargando...</th>')
-                $('tbody').append('<th id="naves' + num + '">Cargando...</th>')
-                $('tbody').append('<th>' + data.url + '</th>')
+                $('tbody').append('<td scope="row">' + data.name + '</td>')
+                $('tbody').append('<td>' + data.height + '/' + data.mass + '</td>')
+                $('tbody').append('<td>' + data.hair_color + '/' + data.skin_color + '/' + data.eye_color + '</td>')
+                $('tbody').append('<td>' + data.birtd_year + '</td>')
+                $('tbody').append('<td>' + data.gender + '</td>')
+                $('tbody').append('<td id="residencia' + num + '">Cargando...</td>')
+                $('tbody').append('<td id="films' + num + '">Cargando...</td>')
+                $('tbody').append('<td id="especie' + num + '">Cargando...</td>')
+                $('tbody').append('<td id="vehiculos' + num + '">Cargando...</td>')
+                $('tbody').append('<td id="naves' + num + '">Cargando...</td>')
+                $('tbody').append('<td>' + data.url + '</td>')
                 $('tbody').append('</tr>')
                 $('tbody').show();
                 homeworld(data.homeworld, num)
@@ -162,27 +161,27 @@ let getJS = () => {
                 especie(data.species, num)
                 vehiculos(data.vehicles, num)
                 naves(data.starships, num)
-                num++;
             } else if (tipo === "planets") {
                 $('#tipo').text('Get JS - Planetas');
-                $('#persona').hide();
-                $('#planeta').show();
+                $('#getPersona').hide();
+                $('#getPlaneta').show();
                 $('tbody').text();
-                $('tbody').append('<th scope="row">' + data.name + '</th>')
-                $('tbody').append('<th>' + data.rotation_period + '/' + data.orbital_period + '</th>')
-                $('tbody').append('<th>' + data.diameter + '</th>')
-                $('tbody').append('<th>' + data.climate + '</th>')
-                $('tbody').append('<th>' + data.gravity + '</th>')
-                $('tbody').append('<th>' + data.terrain + '</th>')
-                $('tbody').append('<th>' + data.surface_water + '</th>')
-                $('tbody').append('<th>' + data.population + '</th>')
-                $('tbody').append('<th id="residentes' + num + '">Cargando...</th>')
-                $('tbody').append('<th id="films' + num + '">Cargando...</th>')
-                $('tbody').append('<th>' + data.url + '</th>')
+                $('tbody').append('<tr>')
+                $('tbody').append('<td scope="row">' + data.name + '</td>')
+                $('tbody').append('<td>' + data.rotation_period + '/' + data.orbital_period + '</td>')
+                $('tbody').append('<td>' + data.diameter + '</td>')
+                $('tbody').append('<td>' + data.climate + '</td>')
+                $('tbody').append('<td>' + data.gravity + '</td>')
+                $('tbody').append('<td>' + data.terrain + '</td>')
+                $('tbody').append('<td>' + data.surface_water + '</td>')
+                $('tbody').append('<td>' + data.population + '</td>')
+                $('tbody').append('<td id="residentes' + num + '">Cargando...</td>')
+                $('tbody').append('<td id="films' + num + '">Cargando...</td>')
+                $('tbody').append('<td>' + data.url + '</td>')
+                $('tbody').append('</tr>')
                 $('tbody').show();
                 residentes(data.residents, num)
                 films(data.films, num)
-                num++;
             } else if (tipo === "starships") {
                 $('#Get').text('');
                 $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - Starships</span></b></p>');
@@ -211,6 +210,7 @@ let getJS = () => {
         }
     }
     request.send();
+    num++;
 }
 
 let postJs = () => {
@@ -354,7 +354,7 @@ let vehiculos = (link, num) => {
         document.getElementById("vehiculos" + num).innerHTML = vehiculos;
 }
 
-let naves = (link, i) => {
+let naves = (link, num) => {
     let naves = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
@@ -378,7 +378,7 @@ let naves = (link, i) => {
         document.getElementById("naves" + num).innerHTML = naves;
 }
 
-let residentes = (link, i) => {
+let residentes = (link, num) => {
     let residentes = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
