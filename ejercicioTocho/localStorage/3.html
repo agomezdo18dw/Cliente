@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>LocalStorage3</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">LocalStorage3</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <input id="es" type="button" value="Español" onclick="cambiarIdioma('es')">
+                    </li>
+                    <li class="nav-item">
+                        <input id="en" type="button" value="English" onclick="cambiarIdioma('en')">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="trn mt-5" data-trn-key="1">Tercera pagina</h1>
+                <p class="trn lead" data-trn-key="2">Pagina extra<p>
+                <a class="trn btn btn-primary" href="./index.html" data-trn-key="btn">Primera pagina</a>
+                <a class="trn btn btn-primary" href="./2.html" data-trn-key="btn2">Segunda pagina</a>
+                <p>3/3</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="./vendor/jquery/jquery.slim.min.js"></script>
+
+    <script src="./js/jquery.translate.js"></script>
+    <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        var dict = {
+            "1": {
+                es: "Tercera pagina",
+                en: "Third page"
+            },
+            "2": {
+                es: "Pagina extra",
+                en: "Extra page"
+            },
+            "btn": {
+                es: "Primera pagina",
+                en: "First page"
+            },
+            "btn2": {
+                es: "Segunda pagina",
+                en: "Second page"
+            }
+        }
+        var translator = $('body').translate({ lang: localStorage.getItem('lng'), t: dict });
+
+        function cambiarIdioma(idioma) {
+            localStorage.setItem("lng", idioma)
+            var translator = $('body').translate({ lang: localStorage.getItem('lng'), t: dict });
+        }
+    </script>
+</body>
+
+</html>
