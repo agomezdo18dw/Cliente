@@ -21,11 +21,12 @@
 
     <div id="message">
         <h3>La contraseña tiene que ser del siguiente tipo:</h3>
-        <p id="numero" class="invalid">Contener un <b>número</b></p>
-        <p id="mayus" class="invalid">Contener una <b>mayuscula</b></p>
-        <p id="minus" class="invalid">Contener una <b>minuscula</b></p>
-        <p id="tamaño" class="invalid">Tener <b>8 caracteres</b></p>
-        <p id="especial" class="invalid">Contener un <b>caracter especial</b></p>
+        <p id="numero" class="invalid">Contener alemnos un <b>número</b></p>
+        <p id="mayus" class="invalid">Contener alemnos una <b>mayuscula</b></p>
+        <p id="minus" class="invalid">Contener alemnos una <b>minuscula</b></p>
+        <p id="tamaño" class="invalid">Tener alemnos <b>8 caracteres</b></p>
+        <h3>Extra:</h3>
+        <p id="especial" class="invalid">Contener alemnos un <b>caracter especial</b> ($@!¡%*#¿?&)</p>
     </div>
 </body>
 
@@ -37,7 +38,7 @@
     var patronmayus = /[A-Z]/g;
     var patronminus = /[a-z]/g;
     var patrontamaño = /.{8,}/g;
-    var patronespecial = /[$@$!%*#?&]/;
+    var patronespecial = /[$@!¡%*#¿?&]+/g;
 
     //Cuando el usuario pulsa sobre la contraseña
     myInput.onfocus = function () {
