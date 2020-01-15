@@ -38,8 +38,9 @@
     var patronmayus = /[A-Z]/g;
     var patronminus = /[a-z]/g;
     var patrontamaño = /.{8,}/g;
-    var patronespecial = /[$@!¡%*#¿?&]+/g;
-
+    var patronespecial = /[$@!¡%*#¿?&]/g;
+    var patronespecial2 = /[<>^\{\}\(\)\[\]]/g;
+    
     //Cuando el usuario pulsa sobre la contraseña
     myInput.onfocus = function () {
         document.getElementById("message").style.display = "block";
@@ -95,7 +96,7 @@
         }
 
         //verificamos el patron con la regex de caracteres especiales
-        if (myInput.value.match(patronespecial)) {
+        if (myInput.value.match(patronespecial) && !myInput.value.match(patronespecial2)) {
             //Cambiamos la clase del mensaje
             especial.classList.remove("invalid");
             especial.classList.add("valid");
