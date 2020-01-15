@@ -74,8 +74,19 @@
                 en: "Second page"
             }
         }
-        var translator = $('body').translate({ lang: localStorage.getItem('lng'), t: dict });
-
+        
+        if (localStorage.lng) {
+            var translator = $('body').translate({
+                lang: localStorage.getItem('lng'),
+                t: dict
+            });
+        } else {
+            var translator = $('body').translate({
+                lang: 'es',
+                t: dict
+            });
+        }
+        
         function cambiarIdioma(idioma) {
             localStorage.setItem("lng", idioma)
             var translator = $('body').translate({ lang: localStorage.getItem('lng'), t: dict });
