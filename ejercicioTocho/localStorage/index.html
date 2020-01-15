@@ -56,6 +56,7 @@
     <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script>
+        //Creamos el diccionario
         var dict = {
             "1": {
                 es: "Primera pagina",
@@ -74,27 +75,8 @@
                 en: "Third page"
             }
         }
-        
-        if (localStorage.lng) {
-            var translator = $('body').translate({
-                lang: localStorage.getItem('lng'),
-                t: dict
-            });
-        } else {
-            var translator = $('body').translate({
-                lang: 'es',
-                t: dict
-            });
-        }
-
-        function cambiarIdioma(idioma) {
-            localStorage.setItem("lng", idioma)
-            var translator = $('body').translate({
-                lang: localStorage.getItem('lng'),
-                t: dict
-            });
-        }
     </script>
+    <script src="./js/js.js"></script>
 </body>
 
 </html>
