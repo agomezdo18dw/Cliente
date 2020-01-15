@@ -25,8 +25,9 @@
         <p id="mayus" class="invalid">Contener alemnos una <b>mayuscula</b></p>
         <p id="minus" class="invalid">Contener alemnos una <b>minuscula</b></p>
         <p id="tamaño" class="invalid">Tener alemnos <b>8 caracteres</b></p>
-        <h3>Extra:</h3>
+        <h3>Extras:</h3>
         <p id="especial" class="invalid">Contener alemnos un <b>caracter especial</b> ($@!¡%*#¿?&)</p>
+        <p id="especial2" class="invalid">No puede contener los <b>caracteres especiales</b> (<>^{}()[])</p>
     </div>
 </body>
 
@@ -96,7 +97,7 @@
         }
 
         //verificamos el patron con la regex de caracteres especiales
-        if (myInput.value.match(patronespecial) && !myInput.value.match(patronespecial2)) {
+        if (myInput.value.match(patronespecial)) {
             //Cambiamos la clase del mensaje
             especial.classList.remove("invalid");
             especial.classList.add("valid");
@@ -104,6 +105,17 @@
             //Cambiamos la clase del mensaje
             especial.classList.remove("valid");
             especial.classList.add("invalid");
+        }
+
+        //verificamos el patron con la regex de caracteres especiales2
+        if (!myInput.value.match(patronespecial2)) {
+            //Cambiamos la clase del mensaje
+            especial2.classList.remove("invalid");
+            especial2.classList.add("valid");
+        } else {
+            //Cambiamos la clase del mensaje
+            especial2.classList.remove("valid");
+            especial2.classList.add("invalid");
         }
     }
 </script>
