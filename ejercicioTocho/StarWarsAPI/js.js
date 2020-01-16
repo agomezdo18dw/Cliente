@@ -1,30 +1,41 @@
+//Esperamos a que cargue la pagina
 $(document).ready(function () {
+    //Escondemos los elementos necesarios
     $('#errorNum').hide();
     $('#errorTit').hide();
     $('table').hide();
     $('#error').hide();
     $('#advertencia').hide();
 
+    //Al presionar el boton de 'getJquery'
     $('#getJquery').click(function () {
-        $('table').hide();
+        //Limpiamos los tr de las tablas para que los id funcionen bien al no estar repetidos
         $('#trPe').text('');
         $('#trPl').text('');
         $('#trSt').text('');
+        //Escondemos los elementos necesarios
+        $('table').hide();
         $('#error').hide();
         $('#post').hide();
         $('#tipo').hide();
         $('#advertencia').hide();
         $('#errorNum').hide();
         $('#errorTit').hide();
+
+        //Recogemos los elementos introducidos por el usuario
         let numero = document.getElementById('numero').value;
         let tipos = document.getElementById("tipos");
         let tipo = tipos.options[tipos.selectedIndex].value;
+
+        //Realizamos validacion de los campos
         if (vacio(numero)) {
             $('#errorNum').text('El campo no puede estar vacio y solo puede contener numeros');
             $('#errorNum').show();
         }
+        //Si la validacion pasa realizamos la llamada AJAX
         else {
             $.get("https://swapi.co/api/" + tipo + "/" + numero + "/", function (data, status) {
+                //Si la llamada es correcta compobamos el tipo de select seleccionado y mostramos los datos necesarios
                 if (status == "success") {
                     if (tipo === "people") {
                         $('#getPersona').show();
@@ -43,6 +54,7 @@ $(document).ready(function () {
                         $('#trPe').append('<td id="vehiculos"><label class="text-primary">Cargando...</label></td>');
                         $('#trPe').append('<td id="naves"><label class="text-primary">Cargando...</label></td>');
                         $('#trPe').append('<td>' + data.url + '</td>');
+                        //Llamamos a las funciones para que carguen los valores de las URL
                         homeworld(data.homeworld);
                         films(data.films);
                         especie(data.species);
@@ -65,6 +77,7 @@ $(document).ready(function () {
                         $('#trPl').append('<td id="residentes"><label class="text-primary">Cargando...</label></td>');
                         $('#trPl').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
                         $('#trPl').append('<td>' + data.url + '</td>');
+                        //Llamamos a las funciones para que carguen los valores de las URL
                         residentes(data.residents);
                         films(data.films);
                     } else if (tipo === "starships") {
@@ -87,10 +100,12 @@ $(document).ready(function () {
                         $('#trSt').append('<td id="pilotos"><label class="text-primary">Cargando...</label></td>');
                         $('#trSt').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
                         $('#trSt').append('<td>' + data.url + '</td>');
+                        //Llamamos a las funciones para que carguen los valores de las URL
                         pilotos(data.pilots);
                         films(data.films);
                     }
                 }
+                //Si la llamada falla mostrara que tipo de llamada se ha intentado realizar y mostrara un error
             }).fail(function () {
                 if (tipo === "people")
                     $('#tipo').text('Get JQuery - Personas');
@@ -104,13 +119,19 @@ $(document).ready(function () {
         };
     });
 
+    //Al presionar el boton de 'postJquery'
     $('#postJquery').click(function () {
+        //Escondemos los elementos necesarios
         $('table').hide();
         $('#tipo').hide();
         $('#advertencia').hide();
         $('#error').hide();
+
+        //Recogemos los elementos introducidos por el usuario
         let numero = document.getElementById('numero').value;
         let title = document.getElementById('titulo').value;
+
+        //Realizamos validacion de los datos recogidos y si no pasa mostrara porque no pasa
         if (vacio(numero)) {
             $('#errorNum').text("El campo no puede estar vacio y solo puede contener numeros");
             $('#errorNum').show();
@@ -124,7 +145,9 @@ $(document).ready(function () {
             $('#errorNum').hide();
             $('#errorTit').text("No puedes dejar en blanco el campo titulo");
             $('#errorTit').show();
-        } else {
+        }
+        //Si pasa hara el post y mostrara los datos posteados, sino mostrara un error
+        else {
             $('#errorNum').hide();
             $('#errorTit').hide();
             $.post("https://my-json-server.typicode.com/typicode/demo/posts", {
@@ -146,23 +169,31 @@ $(document).ready(function () {
     });
 });
 
+//Al presionar el boton de 'getJS'
 let getJS = () => {
-    $('table').hide();
+    //Limpiamos los tr de las tablas para que los id funcionen bien al no estar repetidos
     $('#trPe').text('');
     $('#trPl').text('');
     $('#trSt').text('');
+    //Escondemos los elementos necesarios
+    $('table').hide();
     $('#error').hide();
     $('#post').hide();
     $('#tipo').hide();
     $('#advertencia').hide();
     $('#errorNum').hide();
     $('#errorTit').hide();
+
+    //Recogemos los datos introducidos por el usuario
     let numero = document.getElementById('numero').value;
     let tipos = document.getElementById("tipos");
+
+    //Realizamos validacion de los campos
     if (vacio(numero)) {
         $('#errorNum').text('El campo no puede estar vacio y solo puede contener numeros');
         $('#errorNum').show();
     }
+    //Si la validacion pasa realizamos la llamada AJAX
     else {
         let tipo = tipos.options[tipos.selectedIndex].value;
         //Preparamos la llamada
@@ -172,6 +203,7 @@ let getJS = () => {
         request.onload = function () {
             //almacenamos JSON
             let data = JSON.parse(this.response);
+            //Si la llamada es correcta compobamos el tipo de select seleccionado y mostramos los datos necesarios
             if (request.status >= 200 && request.status < 400) {
                 if (tipo === "people") {
                     $('#getPersona').show();
@@ -190,6 +222,7 @@ let getJS = () => {
                     $('#trPe').append('<td id="vehiculos"><label class="text-primary">Cargando...</label></td>');
                     $('#trPe').append('<td id="naves"><label class="text-primary">Cargando...</label></td>');
                     $('#trPe').append('<td>' + data.url + '</td>');
+                    //Llamamos a las funciones para que carguen los valores de las URL
                     homeworld(data.homeworld);
                     films(data.films);
                     especie(data.species);
@@ -212,6 +245,7 @@ let getJS = () => {
                     $('#trPl').append('<td id="residentes"><label class="text-primary">Cargando...</label></td>');
                     $('#trPl').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
                     $('#trPl').append('<td>' + data.url + '</td>');
+                    //Llamamos a las funciones para que carguen los valores de las URL
                     residentes(data.residents);
                     films(data.films);
                 } else if (tipo === "starships") {
@@ -234,10 +268,13 @@ let getJS = () => {
                     $('#trSt').append('<td id="pilotos"><label class="text-primary">Cargando...</label></td>');
                     $('#trSt').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
                     $('#trSt').append('<td>' + data.url + '</td>');
+                    //Llamamos a las funciones para que carguen los valores de las URL
                     pilotos(data.pilots);
                     films(data.films);
                 }
-            } else {
+            }
+            //Si la llamada falla mostrara que tipo de llamada se ha intentado realizar y mostrara un error
+            else {
                 if (tipo === "people")
                     $('#tipo').text('Get JS - Personas');
                 else if (tipo === "planets")
@@ -248,17 +285,24 @@ let getJS = () => {
                 $('#error').show();
             };
         };
+        //Realizamos la llamada
         request.send();
     };
 };
 
+//Al presionar el boton de 'postJS'
 let postJs = () => {
+    //Escondemos los elementos necesarios
     $('table').hide();
     $('#tipo').hide();
     $('#advertencia').hide();
     $('#error').hide();
+
+    //Recogemos los datos introducidos por el usuario
     let numero = document.getElementById('numero').value;
     let title = document.getElementById('titulo').value;
+
+    //Realizamos validacion de los datos recogidos y si no pasa mostrara porque no pasa
     if (vacio(numero)) {
         $('#errorNum').text("El campo no puede estar vacio y solo puede contener numeros");
         $('#errorNum').show();
@@ -272,7 +316,9 @@ let postJs = () => {
         $('#errorNum').hide();
         $('#errorTit').text("No puedes dejar en blanco el campo titulo");
         $('#errorTit').show();
-    } else {
+    }
+    //Si pasa hara el post y mostrara los datos posteados, sino mostrara un error
+    else {
         $('#errorNum').hide();
         $('#errorTit').hide();
         //Preparamos la llamada
@@ -315,6 +361,7 @@ let numeros = (dato) => {
         return true;
 };
 
+//Funcion que realiza una llamada AJAX y devuelve el nombre de la residencia
 let homeworld = (link) => {
     if (link == '')
         document.getElementById("residencia").innerHTML = 'No se sabe';
@@ -335,6 +382,7 @@ let homeworld = (link) => {
     };
 };
 
+//Funcion que realiza una llamada AJAX y devuelve el nombre de las pelis
 let films = (link) => {
     let pelis = '';
     for (i = 0; i < link.length; i++) {
@@ -361,6 +409,7 @@ let films = (link) => {
         document.getElementById("films").innerHTML = pelis;
 };
 
+//Funcion que realiza una llamada AJAX y devuelve el nombre de la especie
 let especie = (link) => {
     if (link == '')
         document.getElementById("especie").innerHTML = 'No se sabe';
@@ -382,6 +431,7 @@ let especie = (link) => {
     };
 };
 
+//Funcion que realiza una llamada AJAX y devuelve el nombre de los vehiculos
 let vehiculos = (link) => {
     let vehiculos = '';
     for (i = 0; i < link.length; i++) {
@@ -408,6 +458,7 @@ let vehiculos = (link) => {
         document.getElementById("vehiculos").innerHTML = vehiculos;
 };
 
+//Funcion que realiza una llamada AJAX y devuelve el nombre de las naves
 let naves = (link) => {
     let naves = '';
     for (i = 0; i < link.length; i++) {
@@ -434,6 +485,7 @@ let naves = (link) => {
         document.getElementById("naves").innerHTML = naves;
 };
 
+//Funcion que realiza una llamada AJAX y devuelve el nombre de los residentes
 let residentes = (link) => {
     let residentes = '';
     for (i = 0; i < link.length; i++) {
@@ -460,6 +512,7 @@ let residentes = (link) => {
         document.getElementById("residentes").innerHTML = residentes;
 };
 
+//Funcion que realiza una llamada AJAX y devuelve el nombre de los pilotos
 let pilotos = (link) => {
     let pilotos = '';
     for (i = 0; i < link.length; i++) {
