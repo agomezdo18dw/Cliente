@@ -1,235 +1,276 @@
 $(document).ready(function () {
     $('#errorNum').hide();
     $('#errorTit').hide();
-    $('#Post').hide();
-    $('#getPersona').hide();
-    $('#getPlaneta').hide();
+    $('table').hide();
+    $('#error').hide();
+    $('#advertencia').hide();
 
     $('#getJquery').click(function () {
-        $('#Post').hide();
+        $('table').hide();
+        $('#trPe').text('');
+        $('#trPl').text('');
+        $('#trSt').text('');
+        $('#error').hide();
+        $('#post').hide();
+        $('#tipo').hide();
+        $('#advertencia').hide();
+        $('#errorNum').hide();
+        $('#errorTit').hide();
         let numero = document.getElementById('numero').value;
         let tipos = document.getElementById("tipos");
         let tipo = tipos.options[tipos.selectedIndex].value;
-
-        $.get("https://swapi.co/api/" + tipo + "/" + numero + "/", function (data, status) {
-            if (status == "success") {
-                console.log(data)
-                if (tipo === "people") {
-                    $('#Get').text('');
-                    $('#Get').append('<p><b>Get <span class="info" id="tipo">JQuery - People</span></b></p>');
-                    $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
-                    $('#Get').append('<p><b>Altura: </b><span class="info">' + data.height + '</span></p>')
-                    $('#Get').append('<p><b>Peso: </b><span class="info">' + data.mass + '</span></p>')
-                    $('#Get').append('<p><b>Color de pelo: </b><span class="info">' + data.hair_color + '</span></p>')
-                    $('#Get').append('<p><b>Color de piel: </b><span class="info">' + data.skin_color + '</span></p>')
-                    $('#Get').append('<p><b>Color de ojos: </b><span class="info">' + data.eye_color + '</span></p>')
-                    $('#Get').append('<p><b>Año de nacimiento: </b><span class="info">' + data.birth_year + '</span></p>')
-                    $('#Get').append('<p><b>Genero: </b><span class="info">' + data.gender + '</span></p>')
-                    $('#Get').append('<p><b>Residencia: </b><span class="info" id="residencia">Cargando...</span></p>')
-                    $('#Get').append('<p><b>Pelis: </b><span class="info" id="films">Cargando...</span></p>')
-                    $('#Get').append('<p><b>Especie: </b><span class="info" id="especie">Cargando...</span></p>')
-                    $('#Get').append('<p><b>Vehiculos: </b><span class="info" id="vehiculos">Cargando...</span></p>')
-                    $('#Get').append('<p><b>Naves: </b><span class="info" id="naves">Cargando...</span></p>')
-                    $('#Get').append('<p><b>URL: </b><span class="info">' + data.url + '</span></p>')
-                    $('#Get').show();
-                    homeworld(data.homeworld)
-                    films(data.films)
-                    especie(data.species)
-                    vehiculos(data.vehicles)
-                    naves(data.starships)
-                } else if (tipo === "planets") {
-                    $('#Get').text('');
-                    $('#Get').append('<p><b>Get <span class="info" id="tipo">JQuery - Planets</span></b></p>');
-                    $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
-                    $('#Get').append('<p><b>Periodo de rotacion: </b><span class="info">' + data.rotation_period + '</span></p>')
-                    $('#Get').append('<p><b>Periodo orbital: </b><span class="info">' + data.orbital_period + '</span></p>')
-                    $('#Get').append('<p><b>Diametro: </b><span class="info">' + data.diameter + '</span></p>')
-                    $('#Get').append('<p><b>Clima: </b><span class="info">' + data.climate + '</span></p>')
-                    $('#Get').append('<p><b>Gravedad: </b><span class="info">' + data.gravity + '</span></p>')
-                    $('#Get').append('<p><b>Terreno: </b><span class="info">' + data.terrain + '</span></p>')
-                    $('#Get').append('<p><b>Superficie del agua: </b><span class="info">' + data.surface_water + '</span></p>')
-                    $('#Get').append('<p><b>Poblacion: </b><span class="info">' + data.population + '</span></p>')
-                    $('#Get').append('<p><b>Residentes: </b><span class="info" id="residentes">Cargando...</span></p>')
-                    $('#Get').append('<p><b>Pelis: </b><span class="info" id="films">Cargando...</span></p>')
-                    $('#Get').append('<p><b>URL: </b><span class="info">' + data.url + '</span></p>')
-                    $('#Get').show();
-                    residentes(data.residents)
-                    films(data.films)
-                } else if (tipo === "starships") {
-                    $('#Get').text('');
-                    $('#Get').append('<p><b>Get <span class="info" id="tipo">JQuery - Starships</span></b></p>');
-                    $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
-                    $('#Get').append('<p><b>Modelo: </b><span class="info">' + data.model + '</span></p>')
-                    $('#Get').append('<p><b>Manufacturador: </b><span class="info">' + data.manufacturer + '</span></p>')
-                    $('#Get').append('<p><b>Coste: </b><span class="info">' + data.cost_in_credits + '</span></p>')
-                    $('#Get').append('<p><b>Largo: </b><span class="info">' + data.length + '</span></p>')
-                    $('#Get').append('<p><b>Velocidad maxima: </b><span class="info">' + data.max_atmosphering_speed + '</span></p>')
-                    $('#Get').append('<p><b>Personal: </b><span class="info">' + data.crew + '</span></p>')
-                    $('#Get').append('<p><b>Pasajeros: </b><span class="info">' + data.passengers + '</span></p>')
-                    $('#Get').append('<p><b>Capacidad de carga: </b><span class="info">' + data.cargo_capacity + '</span></p>')
-                    $('#Get').append('<p><b>Consumibles: </b><span class="info">' + data.consumables + '</span></p>')
-                    $('#Get').append('<p><b>Calificacion de hiper conduccion: </b><span class="info">' + data.hyperdrive_rating + '</span></p>')
-                    $('#Get').append('<p><b>MGLT: </b><span class="info">' + data.MGLT + '</span></p>')
-                    $('#Get').append('<p><b>Clase: </b><span class="info">' + data.starship_class + '</span></p>')
-                    $('#Get').append('<p><b>Pilotos: </b><span class="info" id="pilotos">Cargando...</span></p>')
-                    $('#Get').append('<p><b>Pelis: </b><span class="info" id="films">Cargando...</span></p>')
-                    $('#Get').append('<p><b>URL: </b><span class="info">' + data.url + '</span></p>')
-                    $('#Get').show();
-                    pilotos(data.pilots)
-                    films(data.films)
+        if (vacio(numero)) {
+            $('#errorNum').text('El campo no puede estar vacio y solo puede contener numeros');
+            $('#errorNum').show();
+        }
+        else {
+            $.get("https://swapi.co/api/" + tipo + "/" + numero + "/", function (data, status) {
+                if (status == "success") {
+                    if (tipo === "people") {
+                        $('#getPersona').show();
+                        $('#tipo').text('Get JQuery - Personas');
+                        $('#tipo').show();
+                        $('#advertencia').show();
+                        $('#trPe').text('');
+                        $('#trPe').append('<td scope="row">' + data.name + '</td>');
+                        $('#trPe').append('<td>' + data.height + '-' + data.mass + '</td>');
+                        $('#trPe').append('<td>' + data.hair_color + '-' + data.skin_color + '-' + data.eye_color + '</td>');
+                        $('#trPe').append('<td>' + data.birtd_year + '</td>');
+                        $('#trPe').append('<td>' + data.gender + '</td>');
+                        $('#trPe').append('<td id="residencia"><label class="text-primary">Cargando...</label></td>');
+                        $('#trPe').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
+                        $('#trPe').append('<td id="especie"><label class="text-primary">Cargando...</label></td>');
+                        $('#trPe').append('<td id="vehiculos"><label class="text-primary">Cargando...</label></td>');
+                        $('#trPe').append('<td id="naves"><label class="text-primary">Cargando...</label></td>');
+                        $('#trPe').append('<td>' + data.url + '</td>');
+                        homeworld(data.homeworld);
+                        films(data.films);
+                        especie(data.species);
+                        vehiculos(data.vehicles);
+                        naves(data.starships);
+                    } else if (tipo === "planets") {
+                        $('#getPlaneta').show();
+                        $('#tipo').text('Get JQuery - Planetas');
+                        $('#tipo').show();
+                        $('#advertencia').show();
+                        $('#trPl').text('');
+                        $('#trPl').append('<td scope="row">' + data.name + '</td>');
+                        $('#trPl').append('<td>' + data.rotation_period + '-' + data.orbital_period + '</td>');
+                        $('#trPl').append('<td>' + data.diameter + '</td>');
+                        $('#trPl').append('<td>' + data.climate + '</td>');
+                        $('#trPl').append('<td>' + data.gravity + '</td>');
+                        $('#trPl').append('<td>' + data.terrain + '</td>');
+                        $('#trPl').append('<td>' + data.surface_water + '</td>');
+                        $('#trPl').append('<td>' + data.population + '</td>');
+                        $('#trPl').append('<td id="residentes"><label class="text-primary">Cargando...</label></td>');
+                        $('#trPl').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
+                        $('#trPl').append('<td>' + data.url + '</td>');
+                        residentes(data.residents);
+                        films(data.films);
+                    } else if (tipo === "starships") {
+                        $('#getNave').show();
+                        $('#tipo').text('Get JQuery - Naves');
+                        $('#tipo').show();
+                        $('#advertencia').show();
+                        $('#trSt').text('');
+                        $('#trSt').append('<td scope="row">' + data.name + '</td>');
+                        $('#trSt').append('<td>' + data.model + '</td>');
+                        $('#trSt').append('<td>' + data.manufacturer + '</td>');
+                        $('#trSt').append('<td>' + data.cost_in_credits + '</td>');
+                        $('#trSt').append('<td>' + data.length + '</td>');
+                        $('#trSt').append('<td>' + data.max_atmosphering_speed + '</td>');
+                        $('#trSt').append('<td>' + data.crew + '-' + data.passengers + '</td>');
+                        $('#trSt').append('<td>' + data.cargo_capacity + '</td>');
+                        $('#trSt').append('<td>' + data.consumables + '</td>');
+                        $('#trSt').append('<td>' + data.hyperdrive_rating + '</td>');
+                        $('#trSt').append('<td>' + data.MGLT + '</td>');
+                        $('#trSt').append('<td id="pilotos"><label class="text-primary">Cargando...</label></td>');
+                        $('#trSt').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
+                        $('#trSt').append('<td>' + data.url + '</td>');
+                        pilotos(data.pilots);
+                        films(data.films);
+                    }
                 }
-            } else {
-                console.log('error')
-            }
-        });
+            }).fail(function () {
+                if (tipo === "people")
+                    $('#tipo').text('Get JQuery - Personas');
+                else if (tipo === "planets")
+                    $('#tipo').text('Get JQuery - Planetas');
+                else if (tipo === "starships")
+                    $('#tipo').text('Get JQuery - Naves');
+                $('#tipo').show()
+                $('#error').show();
+            });
+        };
     });
 
     $('#postJquery').click(function () {
-        $('#Get').hide();
-
+        $('table').hide();
+        $('#tipo').hide();
+        $('#advertencia').hide();
+        $('#error').hide();
         let numero = document.getElementById('numero').value;
-        let title = document.getElementById('title').value;
+        let title = document.getElementById('titulo').value;
         if (vacio(numero)) {
-            $('#errorNum').text(" → No puedes dejar en blanco el campo numero");
+            $('#errorNum').text("El campo no puede estar vacio y solo puede contener numeros");
             $('#errorNum').show();
         } else if (numeros(numero)) {
-            $('#errorNum').text(" → Solo puedes escribir numeros");
+            $('#errorNum').text("Solo puedes escribir numeros");
             $('#errorNum').show();
         } else if (numero <= 3) {
-            $('#errorNum').text(" → Tienes que escribir un numero mayor a 3, porque 1, 2 y 3 ya existen")
+            $('#errorNum').text("Tienes que escribir un numero mayor a 3, porque 1, 2 y 3 ya existen");
             $('#errorNum').show();
         } else if (vacio(title)) {
             $('#errorNum').hide();
-            $('#errorTit').text(" → No puedes dejar en blanco el campo titulo")
+            $('#errorTit').text("No puedes dejar en blanco el campo titulo");
             $('#errorTit').show();
         } else {
             $('#errorNum').hide();
             $('#errorTit').hide();
             $.post("https://my-json-server.typicode.com/typicode/demo/posts", {
-                    id: numero,
-                    title: title
-                },
+                id: numero,
+                title: title
+            },
                 function (data, status) {
                     if (status == "success") {
-                        $('#tipo').text('Jquery');
-                        $('#id').text(data.id);
-                        $('#titulo').text(data.title);
-                        $('#Post').show();
-                    } else {
-                        console.log('error')
-                    }
+                        $('#tipo').text('Post JQuery');
+                        $('#tipo').show();
+                        $('#postTr').text('');
+                        $('#postTr').append('<td scope="row">' + data.id + '</td>');
+                        $('#postTr').append('<td>' + data.title + '</td>');
+                        $('#post').show();
+                    } else
+                        $('#error').show();
                 });
-        }
+        };
     });
 });
 
-let num = 1;
 let getJS = () => {
+    $('table').hide();
+    $('#trPe').text('');
+    $('#trPl').text('');
+    $('#trSt').text('');
+    $('#error').hide();
+    $('#post').hide();
+    $('#tipo').hide();
+    $('#advertencia').hide();
+    $('#errorNum').hide();
+    $('#errorTit').hide();
     let numero = document.getElementById('numero').value;
     let tipos = document.getElementById("tipos");
-    let tipo = tipos.options[tipos.selectedIndex].value;
-    //Preparamos la llamada
-    let request = new XMLHttpRequest();
-    //Definimos el tipo de peticion asi com la url
-    request.open('GET', 'https://swapi.co/api/' + tipo + '/' + numero + '/', true);
-    request.onload = function () {
-        //almacenamos JSON
-        let data = JSON.parse(this.response)
-        if (request.status >= 200 && request.status < 400) {
-            console.log(data)
-            if (tipo === "people") {
-                $('#tipo').text('Get JS - Personas');
-                $('#getPlaneta').hide();
-                $('#getPersona').show();
-                $('tbody').text();
-                $('tbody').append('<tr>');
-                $('tbody').append('<td scope="row">' + data.name + '</td>')
-                $('tbody').append('<td>' + data.height + '/' + data.mass + '</td>')
-                $('tbody').append('<td>' + data.hair_color + '/' + data.skin_color + '/' + data.eye_color + '</td>')
-                $('tbody').append('<td>' + data.birtd_year + '</td>')
-                $('tbody').append('<td>' + data.gender + '</td>')
-                $('tbody').append('<td id="residencia' + num + '">Cargando...</td>')
-                $('tbody').append('<td id="films' + num + '">Cargando...</td>')
-                $('tbody').append('<td id="especie' + num + '">Cargando...</td>')
-                $('tbody').append('<td id="vehiculos' + num + '">Cargando...</td>')
-                $('tbody').append('<td id="naves' + num + '">Cargando...</td>')
-                $('tbody').append('<td>' + data.url + '</td>')
-                $('tbody').append('</tr>')
-                $('tbody').show();
-                homeworld(data.homeworld, num)
-                films(data.films, num)
-                especie(data.species, num)
-                vehiculos(data.vehicles, num)
-                naves(data.starships, num)
-            } else if (tipo === "planets") {
-                $('#tipo').text('Get JS - Planetas');
-                $('#getPersona').hide();
-                $('#getPlaneta').show();
-                $('tbody').text();
-                $('tbody').append('<tr>')
-                $('tbody').append('<td scope="row">' + data.name + '</td>')
-                $('tbody').append('<td>' + data.rotation_period + '/' + data.orbital_period + '</td>')
-                $('tbody').append('<td>' + data.diameter + '</td>')
-                $('tbody').append('<td>' + data.climate + '</td>')
-                $('tbody').append('<td>' + data.gravity + '</td>')
-                $('tbody').append('<td>' + data.terrain + '</td>')
-                $('tbody').append('<td>' + data.surface_water + '</td>')
-                $('tbody').append('<td>' + data.population + '</td>')
-                $('tbody').append('<td id="residentes' + num + '">Cargando...</td>')
-                $('tbody').append('<td id="films' + num + '">Cargando...</td>')
-                $('tbody').append('<td>' + data.url + '</td>')
-                $('tbody').append('</tr>')
-                $('tbody').show();
-                residentes(data.residents, num)
-                films(data.films, num)
-            } else if (tipo === "starships") {
-                $('#Get').text('');
-                $('#Get').append('<p><b>Get <span class="info" id="tipo">JS - Starships</span></b></p>');
-                $('#Get').append('<p><b>Nombre: </b><span class="info">' + data.name + '</span></p>')
-                $('#Get').append('<p><b>Modelo: </b><span class="info">' + data.model + '</span></p>')
-                $('#Get').append('<p><b>Manufacturador: </b><span class="info">' + data.manufacturer + '</span></p>')
-                $('#Get').append('<p><b>Coste: </b><span class="info">' + data.cost_in_credits + '</span></p>')
-                $('#Get').append('<p><b>Largo: </b><span class="info">' + data.length + '</span></p>')
-                $('#Get').append('<p><b>Velocidad maxima: </b><span class="info">' + data.max_atmosphering_speed + '</span></p>')
-                $('#Get').append('<p><b>Personal: </b><span class="info">' + data.crew + '</span></p>')
-                $('#Get').append('<p><b>Pasajeros: </b><span class="info">' + data.passengers + '</span></p>')
-                $('#Get').append('<p><b>Capacidad de carga: </b><span class="info">' + data.cargo_capacity + '</span></p>')
-                $('#Get').append('<p><b>Consumibles: </b><span class="info">' + data.consumables + '</span></p>')
-                $('#Get').append('<p><b>Calificacion de hiper conduccion: </b><span class="info">' + data.hyperdrive_rating + '</span></p>')
-                $('#Get').append('<p><b>MGLT: </b><span class="info">' + data.MGLT + '</span></p>')
-                $('#Get').append('<p><b>Clase: </b><span class="info">' + data.starship_class + '</span></p>')
-                $('#Get').append('<p><b>Pilotos: </b><span class="info" id="pilotos">Cargando...</span></p>')
-                $('#Get').append('<p><b>Pelis: </b><span class="info" id="films">Cargando...</span></p>')
-                $('#Get').append('<p><b>URL: </b><span class="info">' + data.url + '</span></p>')
-                $('#Get').show();
-                pilotos(data.pilots)
-                films(data.films)
-            }
-        } else {
-            console.log('error')
-        }
+    if (vacio(numero)) {
+        $('#errorNum').text('El campo no puede estar vacio y solo puede contener numeros');
+        $('#errorNum').show();
     }
-    request.send();
-    num++;
-}
+    else {
+        let tipo = tipos.options[tipos.selectedIndex].value;
+        //Preparamos la llamada
+        let request = new XMLHttpRequest();
+        //Definimos el tipo de peticion asi com la url
+        request.open('GET', 'https://swapi.co/api/' + tipo + '/' + numero + '/', true);
+        request.onload = function () {
+            //almacenamos JSON
+            let data = JSON.parse(this.response);
+            if (request.status >= 200 && request.status < 400) {
+                if (tipo === "people") {
+                    $('#getPersona').show();
+                    $('#tipo').text('Get JS - Personas');
+                    $('#tipo').show();
+                    $('#advertencia').show();
+                    $('#trPe').text('');
+                    $('#trPe').append('<td scope="row">' + data.name + '</td>');
+                    $('#trPe').append('<td>' + data.height + '-' + data.mass + '</td>');
+                    $('#trPe').append('<td>' + data.hair_color + '-' + data.skin_color + '-' + data.eye_color + '</td>');
+                    $('#trPe').append('<td>' + data.birtd_year + '</td>');
+                    $('#trPe').append('<td>' + data.gender + '</td>');
+                    $('#trPe').append('<td id="residencia"><label class="text-primary">Cargando...</label></td>');
+                    $('#trPe').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
+                    $('#trPe').append('<td id="especie"><label class="text-primary">Cargando...</label></td>');
+                    $('#trPe').append('<td id="vehiculos"><label class="text-primary">Cargando...</label></td>');
+                    $('#trPe').append('<td id="naves"><label class="text-primary">Cargando...</label></td>');
+                    $('#trPe').append('<td>' + data.url + '</td>');
+                    homeworld(data.homeworld);
+                    films(data.films);
+                    especie(data.species);
+                    vehiculos(data.vehicles);
+                    naves(data.starships);
+                } else if (tipo === "planets") {
+                    $('#getPlaneta').show();
+                    $('#tipo').text('Get JS - Planetas');
+                    $('#tipo').show();
+                    $('#advertencia').show();
+                    $('#trPl').text('');
+                    $('#trPl').append('<td scope="row">' + data.name + '</td>');
+                    $('#trPl').append('<td>' + data.rotation_period + '-' + data.orbital_period + '</td>');
+                    $('#trPl').append('<td>' + data.diameter + '</td>');
+                    $('#trPl').append('<td>' + data.climate + '</td>');
+                    $('#trPl').append('<td>' + data.gravity + '</td>');
+                    $('#trPl').append('<td>' + data.terrain + '</td>');
+                    $('#trPl').append('<td>' + data.surface_water + '</td>');
+                    $('#trPl').append('<td>' + data.population + '</td>');
+                    $('#trPl').append('<td id="residentes"><label class="text-primary">Cargando...</label></td>');
+                    $('#trPl').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
+                    $('#trPl').append('<td>' + data.url + '</td>');
+                    residentes(data.residents);
+                    films(data.films);
+                } else if (tipo === "starships") {
+                    $('#getNave').show();
+                    $('#tipo').text('Get JS - Naves');
+                    $('#tipo').show();
+                    $('#advertencia').show();
+                    $('#trSt').text('');
+                    $('#trSt').append('<td scope="row">' + data.name + '</td>');
+                    $('#trSt').append('<td>' + data.model + '</td>');
+                    $('#trSt').append('<td>' + data.manufacturer + '</td>');
+                    $('#trSt').append('<td>' + data.cost_in_credits + '</td>');
+                    $('#trSt').append('<td>' + data.length + '</td>');
+                    $('#trSt').append('<td>' + data.max_atmosphering_speed + '</td>');
+                    $('#trSt').append('<td>' + data.crew + '-' + data.passengers + '</td>');
+                    $('#trSt').append('<td>' + data.cargo_capacity + '</td>');
+                    $('#trSt').append('<td>' + data.consumables + '</td>');
+                    $('#trSt').append('<td>' + data.hyperdrive_rating + '</td>');
+                    $('#trSt').append('<td>' + data.MGLT + '</td>');
+                    $('#trSt').append('<td id="pilotos"><label class="text-primary">Cargando...</label></td>');
+                    $('#trSt').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
+                    $('#trSt').append('<td>' + data.url + '</td>');
+                    pilotos(data.pilots);
+                    films(data.films);
+                }
+            } else {
+                if (tipo === "people")
+                    $('#tipo').text('Get JS - Personas');
+                else if (tipo === "planets")
+                    $('#tipo').text('Get JS - Planetas');
+                else if (tipo === "starships")
+                    $('#tipo').text('Get JS - Naves');
+                $('#tipo').show()
+                $('#error').show();
+            };
+        };
+        request.send();
+    };
+};
 
 let postJs = () => {
-    $('#Get').hide();
-
+    $('table').hide();
+    $('#tipo').hide();
+    $('#advertencia').hide();
+    $('#error').hide();
     let numero = document.getElementById('numero').value;
-    let title = document.getElementById('title').value;
+    let title = document.getElementById('titulo').value;
     if (vacio(numero)) {
-        $('#errorNum').text(" → No puedes dejar en blanco el campo numero");
+        $('#errorNum').text("El campo no puede estar vacio y solo puede contener numeros");
         $('#errorNum').show();
     } else if (numeros(numero)) {
-        $('#errorNum').text(" → Solo puedes escribir numeros");
+        $('#errorNum').text("Solo puedes escribir numeros");
         $('#errorNum').show();
     } else if (numero <= 3) {
-        $('#errorNum').text(" → Tienes que escribir un numero mayor a 3, porque 1, 2 y 3 ya existen")
+        $('#errorNum').text("Tienes que escribir un numero mayor a 3, porque 1, 2 y 3 ya existen");
         $('#errorNum').show();
     } else if (vacio(title)) {
         $('#errorNum').hide();
-        $('#errorTit').text(" → No puedes dejar en blanco el campo titulo")
+        $('#errorTit').text("No puedes dejar en blanco el campo titulo");
         $('#errorTit').show();
     } else {
         $('#errorNum').hide();
@@ -242,54 +283,59 @@ let postJs = () => {
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 201) { //Normalmente el post usa 201 en vez de 200
                 let post = JSON.parse(this.responseText);
-                $('#tipo').text('JS');
-                $('#id').text(post.id);
-                $('#titulo').text(post.title);
-                $('#Post').show();
+                $('#tipo').text('Post JS');
+                $('#tipo').show();
+                $('#postTr').text('');
+                $('#postTr').append('<td scope="row">' + post.id + '</td>');
+                $('#postTr').append('<td>' + post.title + '</td>');
+                $('#post').show();
             }
             /*Si pongo esto me da error primero y luego me dice si se ha posteado correctamente
              *else
-             *  console.log("error")
+             *  $('#error').show();
              */
         };
-    }
+    };
 
-}
+};
 
 //Funcion que valida si un campo esta vacio
 let vacio = (dato) => {
-    if (dato === "")
-        return true
+    if (dato == "")
+        return true;
     else
-        return false
-}
+        return false;
+};
 
 //Funcion que valida si un campo tiene solo numeros
 let numeros = (dato) => {
-    if (dato.match(/[0-9]/gm))
-        return false
+    if (dato.match(/[0-9]/m))
+        return false;
     else
-        return true
-}
+        return true;
+};
 
-let homeworld = (link, num) => {
-    //Preparamos la llamada
-    let request = new XMLHttpRequest();
-    //Definimos el tipo de peticion asi com la url
-    request.open('GET', link, true);
-    request.onload = function () {
-        //almacenamos JSON  
-        let data = JSON.parse(this.response)
-        if (request.status >= 200 && request.status < 400) {
-            document.getElementById("residencia" + num).innerHTML = data.name;
-        } else {
-            console.log("error extraInfo")
+let homeworld = (link) => {
+    if (link == '')
+        document.getElementById("residencia").innerHTML = 'No se sabe';
+    else {
+        //Preparamos la llamada
+        let request = new XMLHttpRequest();
+        //Definimos el tipo de peticion asi com la url
+        request.open('GET', link, true);
+        request.onload = function () {
+            //almacenamos JSON  
+            let data = JSON.parse(this.response);
+            if (request.status >= 200 && request.status < 400)
+                document.getElementById("residencia").innerHTML = data.name;
+            else
+                document.getElementById("residencia").innerHTML = "<label class='text-danger'>Error</label>";
         }
-    }
-    request.send();
-}
+        request.send();
+    };
+};
 
-let films = (link, num) => {
+let films = (link) => {
     let pelis = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
@@ -300,37 +346,43 @@ let films = (link, num) => {
             //almacenamos JSON  
             let data = JSON.parse(this.response)
             if (request.status >= 200 && request.status < 400) {
-                pelis += data.title + ", "
-            } else {
-                console.log("error extraInfo")
-            }
+                if (i + 1 == link.length)
+                    pelis += data.title + ".";
+                else
+                    pelis += data.title + ", ";
+            } else
+                pelis = "<label class='text-danger'>Error</label>";
         }
         request.send();
-    }
+    };
     if (pelis == '')
-        document.getElementById("films" + num).innerHTML = "No sale en pelis";
+        document.getElementById("films").innerHTML = "No sale en pelis";
     else
-        document.getElementById("films" + num).innerHTML = pelis;
-}
+        document.getElementById("films").innerHTML = pelis;
+};
 
-let especie = (link, num) => {
-    //Preparamos la llamada
-    let request = new XMLHttpRequest();
-    //Definimos el tipo de peticion asi com la url
-    request.open('GET', link, true);
-    request.onload = function () {
-        //almacenamos JSON  
-        let data = JSON.parse(this.response)
-        if (request.status >= 200 && request.status < 400) {
-            document.getElementById("especie" + num).innerHTML = data.name;
-        } else {
-            console.log("error extraInfo")
+let especie = (link) => {
+    if (link == '')
+        document.getElementById("especie").innerHTML = 'No se sabe';
+    else {
+        //Preparamos la llamada
+        let request = new XMLHttpRequest();
+        //Definimos el tipo de peticion asi com la url
+        request.open('GET', link, true);
+        request.onload = function () {
+            //almacenamos JSON  
+            let data = JSON.parse(this.response);
+            if (request.status >= 200 && request.status < 400)
+                document.getElementById("especie").innerHTML = data.name;
+            else
+                document.getElementById("especie").innerHTML = "<label class='text-danger'>Error</label>";
+
         }
-    }
-    request.send();
-}
+        request.send();
+    };
+};
 
-let vehiculos = (link, num) => {
+let vehiculos = (link) => {
     let vehiculos = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
@@ -339,22 +391,24 @@ let vehiculos = (link, num) => {
         request.open('GET', link[i], false);
         request.onload = function () {
             //almacenamos JSON  
-            let data = JSON.parse(this.response)
+            let data = JSON.parse(this.response);
             if (request.status >= 200 && request.status < 400) {
-                vehiculos += data.name + ", "
-            } else {
-                console.log("error extraInfo")
-            }
+                if (i + 1 == link.length)
+                    vehiculos += data.name + ".";
+                else
+                    vehiculos += data.name + ", ";
+            } else
+                vehiculos = "<label class='text-danger'>Error</label>";
         }
         request.send();
     }
     if (vehiculos == '')
-        document.getElementById("vehiculos" + num).innerHTML = "No tiene vehiculos";
+        document.getElementById("vehiculos").innerHTML = "No tiene vehiculos";
     else
-        document.getElementById("vehiculos" + num).innerHTML = vehiculos;
-}
+        document.getElementById("vehiculos").innerHTML = vehiculos;
+};
 
-let naves = (link, num) => {
+let naves = (link) => {
     let naves = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
@@ -363,22 +417,24 @@ let naves = (link, num) => {
         request.open('GET', link[i], false);
         request.onload = function () {
             //almacenamos JSON  
-            let data = JSON.parse(this.response)
+            let data = JSON.parse(this.response);
             if (request.status >= 200 && request.status < 400) {
-                naves += data.name + ", "
-            } else {
-                console.log("error extraInfo")
-            }
+                if (i + 1 == link.length)
+                    naves += data.name + ".";
+                else
+                    naves += data.name + ", ";
+            } else
+                naves = "<label class='text-danger'>Error</label>";
         }
         request.send();
     }
     if (naves == '')
-        document.getElementById("naves" + num).innerHTML = "No tiene naves";
+        document.getElementById("naves").innerHTML = "No tiene naves";
     else
-        document.getElementById("naves" + num).innerHTML = naves;
-}
+        document.getElementById("naves").innerHTML = naves;
+};
 
-let residentes = (link, num) => {
+let residentes = (link) => {
     let residentes = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
@@ -387,22 +443,24 @@ let residentes = (link, num) => {
         request.open('GET', link[i], false);
         request.onload = function () {
             //almacenamos JSON  
-            let data = JSON.parse(this.response)
+            let data = JSON.parse(this.response);
             if (request.status >= 200 && request.status < 400) {
-                residentes += data.name + ", "
-            } else {
-                console.log("error extraInfo")
-            }
+                if (i + 1 == link.length)
+                    residentes += data.name + ".";
+                else
+                    residentes += data.name + ", ";
+            } else
+                residentes = "<label class='text-danger'>Error</label>";
         }
         request.send();
     }
     if (residentes == '')
-        document.getElementById("residentes" + num).innerHTML = "No hay residentes";
+        document.getElementById("residentes").innerHTML = "No hay residentes";
     else
-        document.getElementById("residentes" + num).innerHTML = residentes;
-}
+        document.getElementById("residentes").innerHTML = residentes;
+};
 
-let pilotos = (link, i) => {
+let pilotos = (link) => {
     let pilotos = '';
     for (i = 0; i < link.length; i++) {
         //Preparamos la llamada
@@ -411,17 +469,19 @@ let pilotos = (link, i) => {
         request.open('GET', link[i], false);
         request.onload = function () {
             //almacenamos JSON  
-            let data = JSON.parse(this.response)
+            let data = JSON.parse(this.response);
             if (request.status >= 200 && request.status < 400) {
-                pilotos += data.name + ", "
-            } else {
-                console.log("error extraInfo")
-            }
+                if (i + 1 == link.length)
+                    pilotos += data.name + ".";
+                else
+                    pilotos += data.name + ", ";
+            } else
+                pilotos = "<label class='text-danger'>Error</label>";
         }
         request.send();
     }
     if (pilotos == '')
-        document.getElementById("pilotos" + num).innerHTML = "No tiene pilotos";
+        document.getElementById("pilotos").innerHTML = "No hay pilotos";
     else
-        document.getElementById("pilotos" + num).innerHTML = pilotos;
-}
+        document.getElementById("pilotos").innerHTML = pilotos;
+};

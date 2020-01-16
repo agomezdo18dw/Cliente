@@ -17,24 +17,36 @@
             width: 24%;
             margin: 0 0.5%;
         }
+
+        .table>thead>tr>th {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .table>tbody>tr>td {
+            vertical-align: middle;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
-    <h2 class="text-center font-weight-bold">Star Wars API + data intro</h2>
+    <h2 class="text-center font-weight-bold mt-4">Star Wars API + data intro</h2>
+    <p class="text-center">Adrián Gómez</p>
     <br><br>
     <form class="w-50 mx-auto">
         <div class="form-group row">
             <label for="numero" class="col-sm-2 col-form-label font-weight-bold">Numero:</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" id="numero" placeholder="Mete un numero" name="numero">
+                <label id="errorNum" class="text-danger"></label>
             </div>
         </div>
         <div class="form-group row">
             <label for="titulo" class="col-sm-2 col-form-label font-weight-bold">Titulo</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="titulo" placeholder="Mete un titulo (Solo post)"
-                    name="titulo">
+                <input type="text" class="form-control" id="titulo" placeholder="Mete un titulo (Solo post)" name="titulo">
+                <label id="errorTit" class="text-danger"></label>
             </div>
         </div>
         <div class="form-group row">
@@ -55,60 +67,93 @@
         </div>
     </form>
     <h2 class="text-center" id="tipo"></h2>
+    <p class="text-center" id="advertencia"><i>(Espera a que todos los elementos carguen)</i></p>
+    <div id="error" class="text-center">
+        <label class="alert alert-danger">La busqueda no existe o se produjo un error de conexion</label>
+    </div>
     <table class="table table-striped" id="getPersona">
         <thead>
-          <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Altura/Peso</th>
-            <th scope="col">Pelo/Piel/Ojos</th>
-            <th scope="col">Nacimiento</th>
-            <th scope="col">Genero</th>
-            <th scope="col">Genero</th>
-            <th scope="col">Pelis</th>
-            <th scope="col">Especie</th>
-            <th scope="col">Vehiculos</th>
-            <th scope="col">Naves</th>
-            <th scope="col">URL</th>
-          </tr>
+            <tr>
+                <th style="width: 5%">Nombre</th>
+                <th style="width: 5%">Altura-Peso</th>
+                <th style="width: 6%">Pelo-Piel-Ojos</th>
+                <th style="width: 4%">Nacimiento</th>
+                <th style="width: 4%">Genero</th>
+                <th style="width: 4%">Residencia</th>
+                <th style="width: 13%">Pelis</th>
+                <th style="width: 4%">Especie</th>
+                <th style="width: 6%">Vehiculos</th>
+                <th style="width: 8%">Naves</th>
+                <th style="width: 9%">URL</th>
+            </tr>
         </thead>
         <tbody>
+            <tr id="trPe"></tr>
         </tbody>
-      </table>
-      <table class="table table-striped" id="getPlaneta">
+    </table>
+    <table class="table table-striped" id="getPlaneta">
         <thead>
             <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Perdiodos rotacion/orbita</th>
-                <th scope="col">Diametro</th>
-                <th scope="col">Clima</th>
-                <th scope="col">Gravedad</th>
-                <th scope="col">Terreno</th>
-                <th scope="col">Agua</th>
-                <th scope="col">Poblacion</th>
-                <th scope="col">Residentes</th>
-                <th scope="col">Pelis</th>
-                <th scope="col">URL</th>
-              </tr>
+                <th style="width: 5%">Nombre</th>
+                <th style="width: 7%">Perdiodos rotacion-orbita</th>
+                <th style="width: 5%">Diametro</th>
+                <th style="width: 3%">Clima</th>
+                <th style="width: 4%">Gravedad</th>
+                <th style="width: 4%">Terreno</th>
+                <th style="width: 4%">Agua</th>
+                <th style="width: 4%">Poblacion</th>
+                <th style="width: 10%">Residentes</th>
+                <th style="width: 10%">Pelis</th>
+                <th style="width: 9%">URL</th>
+            </tr>
         </thead>
         <tbody>
+            <tr id="trPl"></tr>
         </tbody>
-      </table>
-    <div id="Post">
-        <p><b>Post <span class="info" id="tipo"></span></b></p>
-        <p><b>Id: </b><span class="info" id="id"></span></p>
-        <p><b>Titulo: </b><span class="info" id="titulo"></span></p>
-    </div>
-    <div id="Get">
-    </div>
+    </table>
+    <table class="table table-striped" id="getNave">
+        <thead>
+            <tr>
+                <th style="width: 5%">Nombre</th>
+                <th style="width: 7%">Modelo</th>
+                <th style="width: 5%">Manufacturador</th>
+                <th style="width: 3%">Coste</th>
+                <th style="width: 4%">Largo</th>
+                <th style="width: 4%">Velocidad maxima</th>
+                <th style="width: 4%">Personal-Pasajeros</th>
+                <th style="width: 4%">Capacidad carga</th>
+                <th style="width: 9%">Calificacion hiper conduccion</th>
+                <th style="width: 4%">MGLT</th>
+                <th style="width: 4%">Clase</th>
+                <th style="width: 10%">Pilotos</th>
+                <th style="width: 10%">Pelis</th>
+                <th style="width: 9%">URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="trSt"></tr>
+        </tbody>
+    </table>
+    <table class="table table-striped" id="post">
+        <thead>
+            <tr>
+                <th style="width: 5%">Id</th>
+                <th style="width: 7%">Titulo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="postTr"></tr>
+        </tbody>
+    </table>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="../jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+        </script>
     <!-- Optional JavaScript -->
     <script src="js.js"></script>
 </body>
