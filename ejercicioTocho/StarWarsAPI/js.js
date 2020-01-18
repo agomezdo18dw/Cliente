@@ -80,6 +80,7 @@ $(document).ready(function () {
                         $('#trPl').append('<td id="residentes"><label class="text-primary">Cargando...</label></td>');
                         $('#trPl').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
                         $('#trPl').append('<td>' + data.url + '</td>');
+                        $('#cargando').hide();
                         //Llamamos a las funciones para que carguen los valores de las URL
                         residentes(data.residents);
                         films(data.films);
@@ -103,6 +104,7 @@ $(document).ready(function () {
                         $('#trSt').append('<td id="pilotos"><label class="text-primary">Cargando...</label></td>');
                         $('#trSt').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
                         $('#trSt').append('<td>' + data.url + '</td>');
+                        $('#cargando').hide();
                         //Llamamos a las funciones para que carguen los valores de las URL
                         pilotos(data.pilots);
                         films(data.films);
@@ -118,10 +120,9 @@ $(document).ready(function () {
                     $('#tipo').text('Get JQuery - Naves');
                 $('#tipo').show()
                 $('#error').show();
+                $('#cargando').hide();
             });
         };
-        $('#cargando').hide();
-
     });
 
     //Al presionar el boton de 'postJquery'
@@ -141,16 +142,20 @@ $(document).ready(function () {
         if (vacio(numero)) {
             $('#errorNum').text("El campo no puede estar vacio y solo puede contener numeros");
             $('#errorNum').show();
+            $('#cargando').hide();
         } else if (numeros(numero)) {
             $('#errorNum').text("Solo puedes escribir numeros");
             $('#errorNum').show();
+            $('#cargando').hide();
         } else if (numero <= 3) {
             $('#errorNum').text("Tienes que escribir un numero mayor a 3, porque 1, 2 y 3 ya existen");
             $('#errorNum').show();
+            $('#cargando').hide();
         } else if (vacio(title)) {
             $('#errorNum').hide();
             $('#errorTit').text("No puedes dejar en blanco el campo titulo");
             $('#errorTit').show();
+            $('#cargando').hide();
         }
         //Si pasa hara el post y mostrara los datos posteados, sino mostrara un error
         else {
@@ -168,11 +173,12 @@ $(document).ready(function () {
                         $('#postTr').append('<td scope="row">' + data.id + '</td>');
                         $('#postTr').append('<td>' + data.title + '</td>');
                         $('#post').show();
+                        $('#cargando').hide();
                     } else
                         $('#error').show();
+                        $('#cargando').hide();
                 });
         };
-        $('#cargando').hide();
     });
 });
 
@@ -200,6 +206,7 @@ let getJS = () => {
     if (vacio(numero)) {
         $('#errorNum').text('El campo no puede estar vacio y solo puede contener numeros');
         $('#errorNum').show();
+        $('#cargando').hide();
     }
     //Si la validacion pasa realizamos la llamada AJAX
     else {
@@ -230,6 +237,7 @@ let getJS = () => {
                     $('#trPe').append('<td id="vehiculos"><label class="text-primary">Cargando...</label></td>');
                     $('#trPe').append('<td id="naves"><label class="text-primary">Cargando...</label></td>');
                     $('#trPe').append('<td>' + data.url + '</td>');
+                    $('#cargando').hide();
                     //Llamamos a las funciones para que carguen los valores de las URL
                     homeworld(data.homeworld);
                     films(data.films);
@@ -253,6 +261,7 @@ let getJS = () => {
                     $('#trPl').append('<td id="residentes"><label class="text-primary">Cargando...</label></td>');
                     $('#trPl').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
                     $('#trPl').append('<td>' + data.url + '</td>');
+                    $('#cargando').hide();
                     //Llamamos a las funciones para que carguen los valores de las URL
                     residentes(data.residents);
                     films(data.films);
@@ -276,6 +285,7 @@ let getJS = () => {
                     $('#trSt').append('<td id="pilotos"><label class="text-primary">Cargando...</label></td>');
                     $('#trSt').append('<td id="films"><label class="text-primary">Cargando...</label></td>');
                     $('#trSt').append('<td>' + data.url + '</td>');
+                    $('#cargando').hide();
                     //Llamamos a las funciones para que carguen los valores de las URL
                     pilotos(data.pilots);
                     films(data.films);
@@ -291,12 +301,12 @@ let getJS = () => {
                     $('#tipo').text('Get JS - Naves');
                 $('#tipo').show()
                 $('#error').show();
+                $('#cargando').hide();
             };
         };
         //Realizamos la llamada
         request.send();
     };
-    $('#cargando').hide();
 };
 
 //Al presionar el boton de 'postJS'
@@ -316,16 +326,20 @@ let postJs = () => {
     if (vacio(numero)) {
         $('#errorNum').text("El campo no puede estar vacio y solo puede contener numeros");
         $('#errorNum').show();
+        $('#cargando').hide();
     } else if (numeros(numero)) {
         $('#errorNum').text("Solo puedes escribir numeros");
         $('#errorNum').show();
+        $('#cargando').hide();
     } else if (numero <= 3) {
         $('#errorNum').text("Tienes que escribir un numero mayor a 3, porque 1, 2 y 3 ya existen");
         $('#errorNum').show();
+        $('#cargando').hide();
     } else if (vacio(title)) {
         $('#errorNum').hide();
         $('#errorTit').text("No puedes dejar en blanco el campo titulo");
         $('#errorTit').show();
+        $('#cargando').hide();
     }
     //Si pasa hara el post y mostrara los datos posteados, sino mostrara un error
     else {
@@ -345,6 +359,7 @@ let postJs = () => {
                 $('#postTr').append('<td scope="row">' + post.id + '</td>');
                 $('#postTr').append('<td>' + post.title + '</td>');
                 $('#post').show();
+                $('#cargando').hide();
             }
             /*Si pongo esto me da error primero y luego me dice si se ha posteado correctamente
              *else
@@ -352,7 +367,7 @@ let postJs = () => {
              */
         };
     };
-    $('#cargando').hide();
+
 };
 
 //Funcion que valida si un campo esta vacio
