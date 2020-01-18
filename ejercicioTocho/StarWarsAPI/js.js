@@ -5,10 +5,12 @@ $(document).ready(function () {
     $('#errorTit').hide();
     $('table').hide();
     $('#error').hide();
-    $('#advertencia').hide();
+    $('#advertencia').hide(); cargando
+    $('#cargando').hide();
 
     //Al presionar el boton de 'getJquery'
     $('#getJquery').click(function () {
+        $('#cargando').show();
         //Limpiamos los tr de las tablas para que los id funcionen bien al no estar repetidos
         $('#trPe').text('');
         $('#trPl').text('');
@@ -54,6 +56,7 @@ $(document).ready(function () {
                         $('#trPe').append('<td id="vehiculos"><label class="text-primary">Cargando...</label></td>');
                         $('#trPe').append('<td id="naves"><label class="text-primary">Cargando...</label></td>');
                         $('#trPe').append('<td>' + data.url + '</td>');
+                        $('#cargando').hide();
                         //Llamamos a las funciones para que carguen los valores de las URL
                         homeworld(data.homeworld);
                         films(data.films);
