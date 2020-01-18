@@ -120,6 +120,8 @@ $(document).ready(function () {
                 $('#error').show();
             });
         };
+        $('#cargando').hide();
+
     });
 
     //Al presionar el boton de 'postJquery'
@@ -129,6 +131,7 @@ $(document).ready(function () {
         $('#tipo').hide();
         $('#advertencia').hide();
         $('#error').hide();
+        $('#cargando').show();
 
         //Recogemos los elementos introducidos por el usuario
         let numero = document.getElementById('numero').value;
@@ -169,6 +172,7 @@ $(document).ready(function () {
                         $('#error').show();
                 });
         };
+        $('#cargando').hide();
     });
 });
 
@@ -186,6 +190,7 @@ let getJS = () => {
     $('#advertencia').hide();
     $('#errorNum').hide();
     $('#errorTit').hide();
+    $('#cargando').show();
 
     //Recogemos los datos introducidos por el usuario
     let numero = document.getElementById('numero').value;
@@ -291,6 +296,7 @@ let getJS = () => {
         //Realizamos la llamada
         request.send();
     };
+    $('#cargando').hide();
 };
 
 //Al presionar el boton de 'postJS'
@@ -300,6 +306,7 @@ let postJs = () => {
     $('#tipo').hide();
     $('#advertencia').hide();
     $('#error').hide();
+    $('#cargando').show();
 
     //Recogemos los datos introducidos por el usuario
     let numero = document.getElementById('numero').value;
@@ -345,7 +352,7 @@ let postJs = () => {
              */
         };
     };
-
+    $('#cargando').hide();
 };
 
 //Funcion que valida si un campo esta vacio
