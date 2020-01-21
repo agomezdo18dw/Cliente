@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js" language="JavaScript"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css">
+</head>
+<body>
+    <canvas id="marksChart" width="600" height="400"></canvas>
+
+    <script type="text/javascript">
+        var marksCanvas = document.getElementById("marksChart");
+
+        var marksData = {
+          labels: ["Verano", "Priimavera", "Invierno", "Otoño"],
+          datasets: [{
+            label: "Estaciones",
+            backgroundColor: "rgba(200,0,0,0.2)",
+            data: [5, 2, 1, 8]
+          }]
+        };
+
+        var chartOptions = {
+          scale: {
+            ticks: {
+              beginAtZero: true,
+              min: 0,
+              max: 10,
+              stepSize: 1
+            },
+            pointLabels: {
+              fontSize: 18
+            }
+          },
+          legend: {
+            position: 'left'
+          }
+      }
+
+       var radarChart = new Chart(marksCanvas, {
+          type: 'radar',
+          data: marksData,
+          options: chartOptions
+        });
+    </script>
+</body>
+</html>
